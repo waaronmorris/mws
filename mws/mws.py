@@ -34,10 +34,10 @@ __all__ = [
     'InboundShipments'
 ]
 
-# See https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/doc/en_US/bde/MWSDeveloperGuide._V357736853_.pdf page 8
-# for a list of the end points and marketplace IDs
+"""
+See https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/doc/en_US/bde/MWSDeveloperGuide._V357736853_.pdf page 8
+for a list of the end points and marketplace IDs
 
-MARKETPLACES = {
     "CA" : "https://mws.amazonservices.ca", #A2EUQ1WTGCTBG2
     "US" : "https://mws.amazonservices.com", #ATVPDKIKX0DER",
     "DE" : "https://mws-eu.amazonservices.com", #A1PA6795UKMFR9
@@ -48,8 +48,20 @@ MARKETPLACES = {
     "UK" : "https://mws-eu.amazonservices.com", #A1F83G8C2ARO7P
     "JP" : "https://mws.amazonservices.jp", #A1VC38T7YXB528
     "CN" : "https://mws.amazonservices.com.cn", #AAHKV2X7AFYLW
-    "MX" : "https://mws.amazonservices.com.mx", #A1AM78C64UM0Y8    
-}
+    "MX" : "https://mws.amazonservices.com.mx", #A1AM78C64UM0Y8
+"""
+
+MARKETPLACES = {"CA": "https://mws.amazonservices.ca",
+                "US": "https://mws.amazonservices.com",
+                "DE": "https://mws-eu.amazonservices.com",
+                "ES": "https://mws-eu.amazonservices.com",
+                "FR": "https://mws-eu.amazonservices.com",
+                "IN": "https://mws.amazonservices.in",
+                "IT": "https://mws-eu.amazonservices.com",
+                "UK": "https://mws-eu.amazonservices.com",
+                "JP": "https://mws.amazonservices.jp",
+                "CN": "https://mws.amazonservices.com.cn",
+                "MX": "https://mws.amazonservices.com.mx"}
 
 
 class MWSError(Exception):
@@ -130,8 +142,9 @@ class DataWrapper(object):
     def __init__(self, data, header):
         """
 
-        :param data:
-        :param header:
+        Args:
+            data:
+            header:
         """
         self.original = data
         if 'content-md5' in header:
@@ -143,7 +156,8 @@ class DataWrapper(object):
     def parsed(self):
         """
 
-        :return:
+        Returns:
+
         """
         return self.original
 
@@ -201,8 +215,8 @@ class MWS(object):
             self.domain = MARKETPLACES[region]
         else:
             error_msg = "Incorrect region supplied ('%(region)s'). Must be one of the following: %(marketplaces)s" % {
-                "marketplaces" : ', '.join(MARKETPLACES.keys()),
-                "region" : region,
+                "marketplaces": ', '.join(MARKETPLACES.keys()),
+                "region": region,
             }
             raise MWSError(error_msg)
 
@@ -298,7 +312,8 @@ class MWS(object):
         ])
         return base64.b64encode(hmac.new(self.secret_key.encode(), sig_data.encode(), hashlib.sha256).digest())
 
-    def get_timestamp(self):
+    @staticmethod
+    def get_timestamp():
         """
         Returns the current timestamp in proper format.
 
@@ -355,10 +370,10 @@ class MWS(object):
             for num, value in enumerate(values):
                 if isinstance(value, list):
                     for sub_key, sub_value in self.enumerate_dict(num, dic=values).items():
-                        params['%s%d' % (param, (num + 1))]
+                        params['%s%d' % (param, (num + 1))] = sub_value
                 elif isinstance(value, dict):
                     for sub_key, sub_value in self.enumerate_dict(num, dic=values).items():
-                        params['%s%d' % (param, (num + 1))]
+                        params['%s%d' % (param, (num + 1))] = sub_value
                 else:
                     params['%s%d' % (param, (num + 1))] = value
         return params
@@ -369,99 +384,147 @@ class Feeds(MWS):
 
     ACCOUNT_TYPE = "Merchant"
 
-    def submit_feed(self, feed, feed_type, marketplaceids=None,
+    def submit_feed(self, feed, feed_type, marketplace_ids=None,
                     content_type="text/xml", purge='false'):
         """
         Uploads a feed ( xml or .tsv ) to the seller's inventory.
         Can be used for creating/updating products on Amazon.
 
-        :param feed:
-        :param feed_type:
-        :param marketplaceids:
-        :param content_type:
-        :param purge:
-        :return:
+        Args:
+            feed (:obj:`HTTP-BODY`): The actual content of the feed itself, in XML or flat file format. You must include
+                the FeedContent in the body of the HTTP request
+            feed_type (:obj:`FeedType`): A FeedType value indicating how the data should be processed.
+                Second line of description should be indented.
+            marketplace_ids (:obj:`str`): A list of one or more marketplace IDs (of marketplaces you are
+                registered to sell in) that you want the feed to be applied to. The feed will be applied to all the
+                marketplaces you specify.
+            content_type (:obj:`str`): Your feeds must be in a valid encoding based on your marketplace and
+                file type, and that encoding must be specified as an HTTP Content-Type header. The following table shows
+                the HTTP Content-Type header you should use for flat files and XML files for each marketplace
+            purge (:obj:`str`): A Boolean value that enables the purge and replace functionality. Set to true
+                to purge and replace the existing data; otherwise false. This value only applies to product-related flat
+                file feed types, which do not have a mechanism for specifying purge and replace in the feed body.
+                Use this parameter only in exceptional cases. Usage is throttled to allow only one purge and replace
+                within a 24-hour period.
+
+        Returns:
+            A dict mapping keys to the corresponding table row data fetched. Each row is represented as a tuple of
+            strings.
+
         """
         data = dict(Action='SubmitFeed',
                     FeedType=feed_type,
                     PurgeAndReplace=purge)
-        data.update(self.enumerate_list('MarketplaceIdList.Id.', marketplaceids))
+        data.update(self.enumerate_list('MarketplaceIdList.Id.', marketplace_ids))
         md = calc_md5(feed)
         return self.make_request(data, method="POST", body=feed,
                                  extra_headers={'Content-MD5': md, 'Content-Type': content_type})
 
-    def get_feed_submission_list(self, feedids=None, max_count=None, feedtypes=None,
-                                 processingstatuses=None, fromdate=None, todate=None):
+    def get_feed_submission_list(self, feed_ids=None, max_count=None, feed_types=None,
+                                 processing_statuses=None, from_date=None, to_date=None):
         """
         Returns a list of all feed submissions submitted in the previous 90 days.
-        That match the query parameters.
 
-        :param feedids:
-        :param max_count:
-        :param feedtypes:
-        :param processingstatuses:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            feed_ids: A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId
+                values in a request, other query conditions are ignored.
+            max_count: A non-negative integer that indicates the maximum number of feed submissions to return in the
+                list. If you specify a number greater than 100, the request is rejected.
+            feed_types: A structured list of one or more FeedType values by which to filter the list of feed
+                submissions.
+            processing_statuses: A structured list of one or more feed processing statuses by which to filter the list
+                of feed submissions.
+            from_date: The earliest submission date that you are looking for, in ISO8601 date format.
+            to_date: The latest submission date that you are looking for, in ISO8601 date format.
+
+        Returns:
+            Returns a list of all feed submissions submitted in the previous 90 days.
+
         """
 
         data = dict(Action='GetFeedSubmissionList',
                     MaxCount=max_count,
-                    SubmittedFromDate=fromdate,
-                    SubmittedToDate=todate,)
-        data.update(self.enumerate_list('FeedSubmissionIdList.Id', feedids))
-        data.update(self.enumerate_list('FeedTypeList.Type.', feedtypes))
-        data.update(self.enumerate_list('FeedProcessingStatusList.Status.', processingstatuses))
+                    SubmittedFromDate=from_date,
+                    SubmittedToDate=to_date,)
+        data.update(self.enumerate_list('FeedSubmissionIdList.Id', feed_ids))
+        data.update(self.enumerate_list('FeedTypeList.Type.', feed_types))
+        data.update(self.enumerate_list('FeedProcessingStatusList.Status.', processing_statuses))
         return self.make_request(data)
 
     def get_submission_list_by_next_token(self, token):
         """
 
-        :param token:
-        :return:
+        Args:
+            token: A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
+                ListByNextToken where the value of HasNext was true.
+
+        Returns:
+            Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+            If the request is unsuccessful, the main response element is ErrorResponse.
+
         """
         data = dict(Action='GetFeedSubmissionListByNextToken', NextToken=token)
         return self.make_request(data)
 
-    def get_feed_submission_count(self, feedtypes=None, processingstatuses=None, fromdate=None, todate=None):
+    def get_feed_submission_count(self, feed_types=None, processing_statuses=None, from_date=None, to_date=None):
         """
 
-        :param feedtypes:
-        :param processingstatuses:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            feed_types: A structured list of one or more FeedType values by which to filter the list of feed
+                submissions, processing_statuses: A structured list of one or more feed processing statuses by which to
+                filter the list of feed submissions.
+            processing_statuses:
+            from_date: The earliest submission date that you are looking for, in ISO8601 date format.
+            to_date: The latest submission date that you are looking for, in ISO8601 date format.
+
+        Returns:
+            Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+            If the request is unsuccessful, the main response element is ErrorResponse.
         """
         data = dict(Action='GetFeedSubmissionCount',
-                    SubmittedFromDate=fromdate,
-                    SubmittedToDate=todate)
-        data.update(self.enumerate_list('FeedTypeList.Type.', feedtypes))
-        data.update(self.enumerate_list('FeedProcessingStatusList.Status.', processingstatuses))
+                    SubmittedFromDate=from_date,
+                    SubmittedToDate=to_date)
+        data.update(self.enumerate_list('FeedTypeList.Type.', feed_types))
+        data.update(self.enumerate_list('FeedProcessingStatusList.Status.', processing_statuses))
         return self.make_request(data)
 
-    def cancel_feed_submissions(self, feedids=None, feedtypes=None, fromdate=None, todate=None):
+    def cancel_feed_submissions(self, feed_ids=None, feed_types=None, from_date=None, to_date=None):
         """
 
-        :param feedids:
-        :param feedtypes:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            feed_ids: A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId values in a
+                request, other query conditions are ignored.
+            feed_types: A structured list of one or more FeedType values by which to filter the list of feed
+                submissions.
+            from_date: The earliest submission date that you are looking for, in ISO8601 date format.
+            to_date: The latest submission date that you are looking for, in ISO8601 date format.
+
+        Returns:
+            Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+            If the request is unsuccessful, the main response element is ErrorResponse.
+
         """
         data = dict(Action='CancelFeedSubmissions',
-                    SubmittedFromDate=fromdate,
-                    SubmittedToDate=todate)
-        data.update(self.enumerate_list('FeedSubmissionIdList.Id.', feedids))
-        data.update(self.enumerate_list('FeedTypeList.Type.', feedtypes))
+                    SubmittedFromDate=from_date,
+                    SubmittedToDate=to_date)
+        data.update(self.enumerate_list('FeedSubmissionIdList.Id.', feed_ids))
+        data.update(self.enumerate_list('FeedTypeList.Type.', feed_types))
         return self.make_request(data)
 
-    def get_feed_submission_result(self, feedid):
+    def get_feed_submission_result(self, feed_id):
         """
+        Returns the feed processing report and the Content-MD5 header.
 
-        :param feedid:
-        :return:
+        Args:
+            feed_id: The identifier of the feed submission you are requesting a feed processing report for. You can get
+                the FeedSubmissionId for a feed using the GetFeedSubmissionList operation.
+
+        Returns:
+            The GetFeedSubmissionResult operation returns the feed processing report and the Content-MD5 header for the
+            returned HTTP body.
+
         """
-        data = dict(Action='GetFeedSubmissionResult', FeedSubmissionId=feedid)
+        data = dict(Action='GetFeedSubmissionResult', FeedSubmissionId=feed_id)
         return self.make_request(data)
 
 
@@ -470,123 +533,163 @@ class Reports(MWS):
 
     ACCOUNT_TYPE = "Merchant"
 
-    ## REPORTS ###
-
     def get_report(self, report_id):
         """
+        Returns the contents of a report and the Content-MD5 header for the returned report body.
 
-        :param report_id:
-        :return:
+        Args:
+            report_id: A unique identifier of the report to download, obtained from the GetReportList operation or
+                the GeneratedReportId of a ReportRequest.
+
+        Returns:
+            The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
+            flat file, or an XML document.
+
         """
         data = dict(Action='GetReport', ReportId=report_id)
         return self.make_request(data)
 
-    def get_report_count(self, report_types=(), acknowledged=None, fromdate=None, todate=None):
+    def get_report_count(self, report_types=(), acknowledged=None, from_date=None, to_date=None):
         """
+        Returns a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+        available for download.
 
-        :param report_types:
-        :param acknowledged:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            report_types: A structured list of ReportType enumeration values.
+            acknowledged: A Boolean value that indicates if an order report has been acknowledged by a prior call to
+                UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+                false to list order reports that have not been acknowledged. This filter is valid only with order
+                reports; it does not work with listing reports.
+            from_date: The earliest date you are looking for, in ISO 8601 date time format.
+            to_date: The most recent date you are looking for, in ISO 8601 date time format.
+
+        Returns:
+            a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+            available for download.
+
         """
         data = dict(Action='GetReportCount',
                     Acknowledged=acknowledged,
-                    AvailableFromDate=fromdate,
-                    AvailableToDate=todate)
+                    AvailableFromDate=from_date,
+                    AvailableToDate=to_date)
         data.update(self.enumerate_list('ReportTypeList.Type.', report_types))
         return self.make_request(data)
 
-    def get_report_list(self, requestids=(), max_count=None, types=(), acknowledged=None,
-                        fromdate=None, todate=None):
+    def get_report_list(self, request_ids=(), max_count=None,
+                        types=(), acknowledged=None, from_date=None, to_date=None):
         """
+        Returns a list of reports that were created in the previous 90 days.
 
-        :param requestids:
-        :param max_count:
-        :param types:
-        :param acknowledged:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            request_ids: A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+                conditions are ignored.
+            max_count: A non-negative integer that represents the maximum number of report requests to return. If you
+                specify a number greater than 100, the request is rejected.
+            types: A structured list of ReportType enumeration values.
+            acknowledged: A Boolean value that indicates if an order report has been acknowledged by a prior call to
+                UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+                false to list order reports that have not been acknowledged. This filter is valid only with order
+                reports; it does not work with listing reports.
+            from_date: The earliest date you are looking for, in ISO 8601 date time format.
+            to_date: The most recent date you are looking for, in ISO 8601 date time format.
+
+        Returns:
+            a list of reports that were created in the previous 90 days
+
         """
         data = dict(Action='GetReportList',
                     Acknowledged=acknowledged,
-                    AvailableFromDate=fromdate,
-                    AvailableToDate=todate,
+                    AvailableFromDate=from_date,
+                    AvailableToDate=to_date,
                     MaxCount=max_count)
-        data.update(self.enumerate_list('ReportRequestIdList.Id.', requestids))
+        data.update(self.enumerate_list('ReportRequestIdList.Id.', request_ids))
         data.update(self.enumerate_list('ReportTypeList.Type.', types))
         return self.make_request(data)
 
     def get_report_list_by_next_token(self, token):
         """
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action='GetReportListByNextToken', NextToken=token)
         return self.make_request(data)
 
-    def get_report_request_count(self, report_types=(), processingstatuses=(), fromdate=None, todate=None):
+    def get_report_request_count(self, report_types=(), processing_statuses=(), from_date=None, to_date=None):
         """
 
-        :param report_types:
-        :param processingstatuses:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            report_types:
+            processing_statuses:
+            from_date:
+            to_date:
+
+        Returns:
+
         """
         data = dict(Action='GetReportRequestCount',
-                    RequestedFromDate=fromdate,
-                    RequestedToDate=todate)
+                    RequestedFromDate=from_date,
+                    RequestedToDate=to_date)
         data.update(self.enumerate_list('ReportTypeList.Type.', report_types))
-        data.update(self.enumerate_list('ReportProcessingStatusList.Status.', processingstatuses))
+        data.update(self.enumerate_list('ReportProcessingStatusList.Status.', processing_statuses))
         return self.make_request(data)
 
-    def get_report_request_list(self, requestids=(), types=(), processingstatuses=(),
-                                max_count=None, fromdate=None, todate=None):
+    def get_report_request_list(self, request_ids=(), types=(), processing_statuses=(),
+                                max_count=None, from_date=None, to_date=None):
         """
 
-        :param requestids:
-        :param types:
-        :param processingstatuses:
-        :param max_count:
-        :param fromdate:
-        :param todate:
-        :return:
+        Args:
+            request_ids:
+            types:
+            processing_statuses:
+            max_count:
+            from_date:
+            to_date:
+
+        Returns:
+
         """
         data = dict(Action='GetReportRequestList',
                     MaxCount=max_count,
-                    RequestedFromDate=fromdate,
-                    RequestedToDate=todate)
-        data.update(self.enumerate_list('ReportRequestIdList.Id.', requestids))
+                    RequestedFromDate=from_date,
+                    RequestedToDate=to_date)
+        data.update(self.enumerate_list('ReportRequestIdList.Id.', request_ids))
         data.update(self.enumerate_list('ReportTypeList.Type.', types))
-        data.update(self.enumerate_list('ReportProcessingStatusList.Status.', processingstatuses))
+        data.update(self.enumerate_list('ReportProcessingStatusList.Status.', processing_statuses))
         return self.make_request(data)
 
     def get_report_request_list_by_next_token(self, token):
         """
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action='GetReportRequestListByNextToken', NextToken=token)
         return self.make_request(data)
 
-    def request_report(self, report_type, start_date=None, end_date=None, marketplaceids=()):
+    def request_report(self, report_type, start_date=None, end_date=None, marketplace_ids=()):
         """
 
-        :param report_type:
-        :param start_date:
-        :param end_date:
-        :param marketplaceids:
-        :return:
+        Args:
+            report_type:
+            start_date:
+            end_date:
+            marketplace_ids:
+
+        Returns:
+
         """
         data = dict(Action='RequestReport',
                     ReportType=report_type,
                     StartDate=start_date,
                     EndDate=end_date)
-        data.update(self.enumerate_list('MarketplaceIdList.Id.', marketplaceids))
+        data.update(self.enumerate_list('MarketplaceIdList.Id.', marketplace_ids))
         return self.make_request(data)
 
     """
@@ -596,8 +699,11 @@ class Reports(MWS):
     def get_report_schedule_list(self, types=()):
         """
 
-        :param types:
-        :return:
+        Args:
+            types:
+
+        Returns:
+
         """
         data = dict(Action='GetReportScheduleList')
         data.update(self.enumerate_list('ReportTypeList.Type.', types))
@@ -606,8 +712,11 @@ class Reports(MWS):
     def get_report_schedule_count(self, types=()):
         """
 
-        :param types:
-        :return:
+        Args:
+            types:
+
+        Returns:
+
         """
         data = dict(Action='GetReportScheduleCount')
         data.update(self.enumerate_list('ReportTypeList.Type.', types))
@@ -626,36 +735,39 @@ class Orders(MWS):
     VERSION = "2013-09-01"
     NS = '{https://mws.amazonservices.com/Orders/2013-09-01}'
 
-    def list_orders(self, marketplaceids, created_after=None, created_before=None, lastupdatedafter=None,
-                    lastupdatedbefore=None, orderstatus=(), fulfillment_channels=(),
-                    payment_methods=(), buyer_email=None, seller_orderid=None, max_results='100'):
+    def list_orders(self, marketplace_ids, created_after=None, created_before=None, last_updated_after=None,
+                    last_updated_before=None, order_status=(), fulfillment_channels=(),
+                    payment_methods=(), buyer_email=None, seller_order_id=None, max_results='100'):
         """
 
-        :param marketplaceids:
-        :param created_after:
-        :param created_before:
-        :param lastupdatedafter:
-        :param lastupdatedbefore:
-        :param orderstatus:
-        :param fulfillment_channels:
-        :param payment_methods:
-        :param buyer_email:
-        :param seller_orderid:
-        :param max_results:
-        :return:
+        Args:
+            marketplace_ids:
+            created_after:
+            created_before:
+            last_updated_after:
+            last_updated_before:
+            order_status:
+            fulfillment_channels:
+            payment_methods:
+            buyer_email:
+            seller_order_id:
+            max_results:
+
+        Returns:
+
         """
 
         data = dict(Action='ListOrders',
                     CreatedAfter=created_after,
                     CreatedBefore=created_before,
-                    LastUpdatedAfter=lastupdatedafter,
-                    LastUpdatedBefore=lastupdatedbefore,
+                    LastUpdatedAfter=last_updated_after,
+                    LastUpdatedBefore=last_updated_before,
                     BuyerEmail=buyer_email,
-                    SellerOrderId=seller_orderid,
+                    SellerOrderId=seller_order_id,
                     MaxResultsPerPage=max_results,
                     )
-        data.update(self.enumerate_list('OrderStatus.Status.', orderstatus))
-        data.update(self.enumerate_list('MarketplaceId.Id.', marketplaceids))
+        data.update(self.enumerate_list('OrderStatus.Status.', order_status))
+        data.update(self.enumerate_list('MarketplaceId.Id.', marketplace_ids))
         data.update(self.enumerate_list('FulfillmentChannel.Channel.', fulfillment_channels))
         data.update(self.enumerate_list('PaymentMethod.Method.', payment_methods))
         return self.make_request(data)
@@ -663,8 +775,11 @@ class Orders(MWS):
     def list_orders_by_next_token(self, token):
         """
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action='ListOrdersByNextToken', NextToken=token)
         return self.make_request(data)
@@ -672,8 +787,11 @@ class Orders(MWS):
     def get_order(self, amazon_order_ids):
         """
 
-        :param amazon_order_ids:
-        :return:
+        Args:
+            amazon_order_ids:
+
+        Returns:
+
         """
         data = dict(Action='GetOrder')
         data.update(self.enumerate_list('AmazonOrderId.Id.', amazon_order_ids))
@@ -682,8 +800,11 @@ class Orders(MWS):
     def list_order_items(self, amazon_order_id):
         """
 
-        :param amazon_order_id:
-        :return:
+        Args:
+            amazon_order_id:
+
+        Returns:
+
         """
         data = dict(Action='ListOrderItems', AmazonOrderId=amazon_order_id)
         return self.make_request(data)
@@ -691,8 +812,11 @@ class Orders(MWS):
     def list_order_items_by_next_token(self, token):
         """
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action='ListOrderItemsByNextToken', NextToken=token)
         return self.make_request(data)
@@ -712,10 +836,13 @@ class Products(MWS):
         Your search query can be a phrase that describes the product
         or it can be a product identifier such as a UPC, EAN, ISBN, or JAN.
 
-        :param marketplaceid:
-        :param query:
-        :param contextid:
-        :return:
+        Args:
+            marketplaceid:
+            query:
+            contextid:
+
+        Returns:
+
         """
         data = dict(Action='ListMatchingProducts',
                     MarketplaceId=marketplaceid,
@@ -728,42 +855,51 @@ class Products(MWS):
         Returns a list of products and their attributes, based on a list of
         ASIN values that you specify.
 
-        :param marketplaceid:
-        :param asins:
-        :return:
+        Args:
+            marketplaceid:
+            asins:
+
+        Returns:
+
         """
         data = dict(Action='GetMatchingProduct', MarketplaceId=marketplaceid)
         data.update(self.enumerate_list('ASINList.ASIN.', asins))
         return self.make_request(data)
 
-    def get_matching_product_for_id(self, marketplaceid, type, ids):
+    def get_matching_product_for_id(self, marketplace_id, types, ids):
         """
         Returns a list of products and their attributes, based on a list of
         product identifier values (ASIN, SellerSKU, UPC, EAN, ISBN, GCID  and JAN)
         The identifier type is case sensitive.
         Added in Fourth Release, API version 2011-10-01
 
-        :param marketplaceid:
-        :param type:
-        :param ids:
-        :return:
+        Args:
+            marketplace_id:
+            types:
+            ids:
+
+        Returns:
+
         """
         data = dict(Action='GetMatchingProductForId',
-                    MarketplaceId=marketplaceid,
-                    IdType=type)
+                    MarketplaceId=marketplace_id,
+                    IdType=types)
         data.update(self.enumerate_list('IdList.Id.', ids))
         return self.make_request(data)
 
-    def get_competitive_pricing_for_sku(self, marketplaceid, skus):
+    def get_competitive_pricing_for_sku(self, marketplace_id, skus):
         """
         Returns the current competitive pricing of a product,
         based on the SellerSKU and MarketplaceId that you specify.
 
-        :param marketplaceid:
-        :param skus:
-        :return:
+        Args:
+            marketplace_id:
+            skus:
+
+        Returns:
+
         """
-        data = dict(Action='GetCompetitivePricingForSKU', MarketplaceId=marketplaceid)
+        data = dict(Action='GetCompetitivePricingForSKU', MarketplaceId=marketplace_id)
         data.update(self.enumerate_list('SellerSKUList.SellerSKU.', skus))
         return self.make_request(data)
 
@@ -772,9 +908,12 @@ class Products(MWS):
         Returns the current competitive pricing of a product,
         based on the ASIN and MarketplaceId that you specify.
 
-        :param marketplaceid:
-        :param asins:
-        :return:
+        Args:
+            marketplaceid:
+            asins:
+
+        Returns:
+
         """
         data = dict(Action='GetCompetitivePricingForASIN', MarketplaceId=marketplaceid)
         data.update(self.enumerate_list('ASINList.ASIN.', asins))
@@ -783,11 +922,14 @@ class Products(MWS):
     def get_lowest_offer_listings_for_sku(self, marketplaceid, skus, condition="Any", excludeme="False"):
         """
 
-        :param marketplaceid:
-        :param skus:
-        :param condition:
-        :param excludeme:
-        :return:
+        Args:
+            marketplaceid:
+            skus:
+            condition:
+            excludeme:
+
+        Returns:
+
         """
         data = dict(Action='GetLowestOfferListingsForSKU',
                     MarketplaceId=marketplaceid,
@@ -799,11 +941,14 @@ class Products(MWS):
     def get_lowest_offer_listings_for_asin(self, marketplaceid, asins, condition="Any", excludeme="False"):
         """
 
-        :param marketplaceid:
-        :param asins:
-        :param condition:
-        :param excludeme:
-        :return:
+        Args:
+            marketplaceid:
+            asins:
+            condition:
+            excludeme:
+
+        Returns:
+
         """
         data = dict(Action='GetLowestOfferListingsForASIN',
                     MarketplaceId=marketplaceid,
@@ -815,11 +960,14 @@ class Products(MWS):
     def get_lowest_priced_offers_for_sku(self, marketplaceid, sku, condition="New", excludeme="False"):
         """
 
-        :param marketplaceid:
-        :param sku:
-        :param condition:
-        :param excludeme:
-        :return:
+        Args:
+            marketplaceid:
+            sku:
+            condition:
+            excludeme:
+
+        Returns:
+
         """
         data = dict(Action='GetLowestPricedOffersForSKU',
                     MarketplaceId=marketplaceid,
@@ -831,11 +979,14 @@ class Products(MWS):
     def get_lowest_priced_offers_for_asin(self, marketplaceid, asin, condition="New", excludeme="False"):
         """
 
-        :param marketplaceid:
-        :param asin:
-        :param condition:
-        :param excludeme:
-        :return:
+        Args:
+            marketplaceid:
+            asin:
+            condition:
+            excludeme:
+
+        Returns:
+
         """
         data = dict(Action='GetLowestPricedOffersForASIN',
                     MarketplaceId=marketplaceid,
@@ -847,9 +998,12 @@ class Products(MWS):
     def get_product_categories_for_sku(self, marketplaceid, sku):
         """
 
-        :param marketplaceid:
-        :param sku:
-        :return:
+        Args:
+            marketplaceid:
+            sku:
+
+        Returns:
+
         """
         data = dict(Action='GetProductCategoriesForSKU',
                     MarketplaceId=marketplaceid,
@@ -859,9 +1013,12 @@ class Products(MWS):
     def get_product_categories_for_asin(self, marketplaceid, asin):
         """
 
-        :param marketplaceid:
-        :param asin:
-        :return:
+        Args:
+            marketplaceid:
+            asin:
+
+        Returns:
+
         """
         data = dict(Action='GetProductCategoriesForASIN',
                     MarketplaceId=marketplaceid,
@@ -871,10 +1028,13 @@ class Products(MWS):
     def get_my_price_for_sku(self, marketplaceid, skus, condition=None):
         """
 
-        :param marketplaceid:
-        :param skus:
-        :param condition:
-        :return:
+        Args:
+            marketplaceid:
+            skus:
+            condition:
+
+        Returns:
+
         """
         data = dict(Action='GetMyPriceForSKU',
                     MarketplaceId=marketplaceid,
@@ -885,10 +1045,13 @@ class Products(MWS):
     def get_my_price_for_asin(self, marketplaceid, asins, condition=None):
         """
 
-        :param marketplaceid:
-        :param asins:
-        :param condition:
-        :return:
+        Args:
+            marketplaceid:
+            asins:
+            condition:
+
+        Returns:
+
         """
         data = dict(Action='GetMyPriceForASIN',
                     MarketplaceId=marketplaceid,
@@ -910,7 +1073,8 @@ class Sellers(MWS):
         a list of participations that include seller-specific information in that marketplace.
         The operation returns only those marketplaces where the seller's account is in an active state.
 
-        :return:
+        Returns:
+
         """
 
         data = dict(Action='ListMarketplaceParticipations')
@@ -921,8 +1085,11 @@ class Sellers(MWS):
         Takes a "NextToken" and returns the same information as "list_marketplace_participations".
         Based on the "NextToken".
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action='ListMarketplaceParticipations', NextToken=token)
         return self.make_request(data)
@@ -945,11 +1112,16 @@ class InboundShipments(MWS):
         were last updated. Note that if you specify the ShipmentId, then the LastUpdatedAfter and
         LastUpdatedBefore request parameters are ignored.
 
-        :param shipment_id: int
-        :param last_updated_after: date
-        :param last_updated_before: date
-        :return: a list of items contained in an inbound shipment
+        Args:
+            shipment_id:
+            last_updated_after:
+            last_updated_before:
+
+        Returns:
+            a list of items contained in an inbound shipment
+
         """
+
         data = dict(Action='ListInboundShipmentItems',
                     ShipmentId=shipment_id,
                     LastUpdatedAfter=last_updated_after,
@@ -961,8 +1133,13 @@ class InboundShipments(MWS):
         Takes a "NextToken" and returns the same information as :func "list_inbound_shipment_items".
         Based on the "NextToken".
 
-        :param token: A string token returned in the response of your previous request to either ListInboundShipmentItems or ListInboundShipmentItemsByNextToken.
-        :return: a list of items contained in an inbound shipment
+        Args:
+            token: A string token returned in the response of your previous request to either ListInboundShipmentItems
+                or ListInboundShipmentItemsByNextToken.
+
+        Returns:
+            a list of items contained in an inbound shipment
+
         """
         data = dict(Action='ListInboundShipmentItemsByNextToken',
                     NextToken=token)
@@ -974,9 +1151,13 @@ class InboundShipments(MWS):
         marketplace. In some cases, Amazon provides guidance for why a given Seller SKU is not recommended for
         shipment to Amazon's fulfillment network.
 
-        :param sku_inbound_guidance_list:
-        :param marketplace_id:
-        :return: Dictionary of inbound guidance and reason
+        Args:
+            sku_inbound_guidance_list:
+            marketplace_id:
+
+        Returns:
+            Dictionary of inbound guidance and reason
+
         """
         data = dict(Action='GetInboundGuidanceForSKU',
                     MarketplaceId=marketplace_id)
@@ -990,9 +1171,13 @@ class InboundShipments(MWS):
         given marketplace. In some cases, Amazon provides guidance for why a given ASIN is not recommended for
         shipment to Amazon's fulfillment network.
 
-        :param asin_list:
-        :param marketplace_id:
-        :return: Dictionary of inbound guidance and reason
+        Args:
+            asin_inbound_guidance_list:
+            marketplace_id:
+
+        Returns:
+            Dictionary of inbound guidance and reason
+
         """
         data = dict(Action='GetInboundGuidanceForASIN',
                     MarketplaceId=marketplace_id)
@@ -1015,13 +1200,17 @@ class InboundShipments(MWS):
         require different processing—for example, items that require labels must be shipped separately from
         stickerless, commingled inventory.
 
-        :param ship_from_address:
-        :param ship_to_country_code:
-        :param ship_to_country_ship_to_country_subdivision_code:
-        :param label_prep_preference:
-        :param inbound_shipment_plan_request_items:
-        :return:
+        Args:
+            ship_from_address:
+            inbound_shipment_plan_request_items:
+            ship_to_country_code:
+            ship_to_country_ship_to_country_subdivision_code:
+            label_prep_preference:
+
+        Returns:
+
         """
+
         data = dict(Action='CreateInboundShipmentPlan',
                     ShipFromAddress=ship_from_address,
                     ShipToCountryCode=ship_to_country_code,
@@ -1059,13 +1248,14 @@ class Inventory(MWS):
         """
         Returns information on available inventory
 
-        :param skus:
-        :param datetime:
-        :param response_group:
-        :return:
-        """
-        """ """
+        Args:
+            skus:
+            datetime:
+            response_group:
 
+        Returns:
+
+        """
         data = dict(Action='ListInventorySupply',
                     QueryStartDateTime=datetime,
                     ResponseGroup=response_group,
@@ -1076,8 +1266,11 @@ class Inventory(MWS):
     def list_inventory_supply_by_next_token(self, token):
         """
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action='ListInventorySupplyByNextToken', NextToken=token)
         return self.make_request(data, "POST")
@@ -1103,8 +1296,11 @@ class Recommendations(MWS):
         Checks whether there are active recommendations for each category for the given marketplace, and if there are,
         returns the time when recommendations were last updated for each category.
 
-        :param marketplaceid:
-        :return:
+        Args:
+            marketplaceid:
+
+        Returns:
+
         """
 
         data = dict(Action='GetLastUpdatedTimeForRecommendations',
@@ -1115,9 +1311,12 @@ class Recommendations(MWS):
         """
         Returns your active recommendations for a specific category or for all categories for a specific marketplace.
 
-        :param marketplaceid:
-        :param recommendationcategory:
-        :return:
+        Args:
+            marketplaceid:
+            recommendationcategory:
+
+        Returns:
+
         """
 
         data = dict(Action="ListRecommendations",
@@ -1129,8 +1328,11 @@ class Recommendations(MWS):
         """
         Returns the next page of recommendations using the NextToken parameter.
 
-        :param token:
-        :return:
+        Args:
+            token:
+
+        Returns:
+
         """
         data = dict(Action="ListRecommendationsByNextToken",
                     NextToken=token)

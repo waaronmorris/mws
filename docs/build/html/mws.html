@@ -8,7 +8,7 @@
     
     <title>mws package &#8212; Python Amazon MWS 0.8 documentation</title>
     
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,25 +27,16 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="Python Amazon MWS 0.8 documentation" href="index.html" />
     <link rel="up" title="mws" href="modules.html" />
-    <link rel="prev" title="mws" href="modules.html" /> 
+    <link rel="prev" title="mws" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
   <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="modules.html" title="mws"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">mws</a> &#187;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -71,20 +62,23 @@
 
 <dl class="method">
 <dt id="mws.mws.Feeds.cancel_feed_submissions">
-<code class="descname">cancel_feed_submissions</code><span class="sig-paren">(</span><em>feedids=None</em>, <em>feedtypes=None</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.cancel_feed_submissions" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cancel_feed_submissions</code><span class="sig-paren">(</span><em>feed_ids=None</em>, <em>feed_types=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.cancel_feed_submissions" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feedids</strong> &#8211; </li>
-<li><strong>feedtypes</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>feed_ids</strong> &#8211; A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId values in a
+request, other query conditions are ignored.</li>
+<li><strong>feed_types</strong> &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+submissions.</li>
+<li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
+<li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+If the request is unsuccessful, the main response element is ErrorResponse.</p>
 </td>
 </tr>
 </tbody>
@@ -93,20 +87,23 @@
 
 <dl class="method">
 <dt id="mws.mws.Feeds.get_feed_submission_count">
-<code class="descname">get_feed_submission_count</code><span class="sig-paren">(</span><em>feedtypes=None</em>, <em>processingstatuses=None</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_count" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_feed_submission_count</code><span class="sig-paren">(</span><em>feed_types=None</em>, <em>processing_statuses=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_count" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feedtypes</strong> &#8211; </li>
-<li><strong>processingstatuses</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>feed_types</strong> &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+submissions, processing_statuses: A structured list of one or more feed processing statuses by which to
+filter the list of feed submissions.</li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
+<li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+If the request is unsuccessful, the main response element is ErrorResponse.</p>
 </td>
 </tr>
 </tbody>
@@ -115,24 +112,27 @@
 
 <dl class="method">
 <dt id="mws.mws.Feeds.get_feed_submission_list">
-<code class="descname">get_feed_submission_list</code><span class="sig-paren">(</span><em>feedids=None</em>, <em>max_count=None</em>, <em>feedtypes=None</em>, <em>processingstatuses=None</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of all feed submissions submitted in the previous 90 days.
-That match the query parameters.</p>
+<code class="descname">get_feed_submission_list</code><span class="sig-paren">(</span><em>feed_ids=None</em>, <em>max_count=None</em>, <em>feed_types=None</em>, <em>processing_statuses=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all feed submissions submitted in the previous 90 days.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feedids</strong> &#8211; </li>
-<li><strong>max_count</strong> &#8211; </li>
-<li><strong>feedtypes</strong> &#8211; </li>
-<li><strong>processingstatuses</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>feed_ids</strong> &#8211; A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId
+values in a request, other query conditions are ignored.</li>
+<li><strong>max_count</strong> &#8211; A non-negative integer that indicates the maximum number of feed submissions to return in the
+list. If you specify a number greater than 100, the request is rejected.</li>
+<li><strong>feed_types</strong> &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+submissions.</li>
+<li><strong>processing_statuses</strong> &#8211; A structured list of one or more feed processing statuses by which to filter the list
+of feed submissions.</li>
+<li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
+<li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns a list of all feed submissions submitted in the previous 90 days.</p>
 </td>
 </tr>
 </tbody>
@@ -141,14 +141,17 @@ That match the query parameters.</p>
 
 <dl class="method">
 <dt id="mws.mws.Feeds.get_feed_submission_result">
-<code class="descname">get_feed_submission_result</code><span class="sig-paren">(</span><em>feedid</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_result" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<code class="descname">get_feed_submission_result</code><span class="sig-paren">(</span><em>feed_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the feed processing report and the Content-MD5 header.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feedid</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feed_id</strong> &#8211; The identifier of the feed submission you are requesting a feed processing report for. You can get
+the FeedSubmissionId for a feed using the GetFeedSubmissionList operation.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The GetFeedSubmissionResult operation returns the feed processing report and the Content-MD5 header for the
+returned HTTP body.</td>
 </tr>
 </tbody>
 </table>
@@ -161,9 +164,11 @@ That match the query parameters.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
+ListByNextToken where the value of HasNext was true.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+If the request is unsuccessful, the main response element is ErrorResponse.</td>
 </tr>
 </tbody>
 </table>
@@ -171,7 +176,7 @@ That match the query parameters.</p>
 
 <dl class="method">
 <dt id="mws.mws.Feeds.submit_feed">
-<code class="descname">submit_feed</code><span class="sig-paren">(</span><em>feed</em>, <em>feed_type</em>, <em>marketplaceids=None</em>, <em>content_type='text/xml'</em>, <em>purge='false'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.submit_feed" title="Permalink to this definition">¶</a></dt>
+<code class="descname">submit_feed</code><span class="sig-paren">(</span><em>feed</em>, <em>feed_type</em>, <em>marketplace_ids=None</em>, <em>content_type='text/xml'</em>, <em>purge='false'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.submit_feed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uploads a feed ( xml or .tsv ) to the seller&#8217;s inventory.
 Can be used for creating/updating products on Amazon.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -179,15 +184,26 @@ Can be used for creating/updating products on Amazon.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feed</strong> &#8211; </li>
-<li><strong>feed_type</strong> &#8211; </li>
-<li><strong>marketplaceids</strong> &#8211; </li>
-<li><strong>content_type</strong> &#8211; </li>
-<li><strong>purge</strong> &#8211; </li>
+<li><strong>feed</strong> (<code class="xref py py-obj docutils literal"><span class="pre">HTTP-BODY</span></code>) &#8211; The actual content of the feed itself, in XML or flat file format. You must include
+the FeedContent in the body of the HTTP request</li>
+<li><strong>feed_type</strong> (<code class="xref py py-obj docutils literal"><span class="pre">FeedType</span></code>) &#8211; A FeedType value indicating how the data should be processed.
+Second line of description should be indented.</li>
+<li><strong>marketplace_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A list of one or more marketplace IDs (of marketplaces you are
+registered to sell in) that you want the feed to be applied to. The feed will be applied to all the
+marketplaces you specify.</li>
+<li><strong>content_type</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; Your feeds must be in a valid encoding based on your marketplace and
+file type, and that encoding must be specified as an HTTP Content-Type header. The following table shows
+the HTTP Content-Type header you should use for flat files and XML files for each marketplace</li>
+<li><strong>purge</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A Boolean value that enables the purge and replace functionality. Set to true
+to purge and replace the existing data; otherwise false. This value only applies to product-related flat
+file feed types, which do not have a mechanism for specifying purge and replace in the feed body.
+Use this parameter only in exceptional cases. Usage is throttled to allow only one purge and replace
+within a 24-hour period.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dict mapping keys to the corresponding table row data fetched. Each row is represented as a tuple of
+strings.</p>
 </td>
 </tr>
 </tbody>
@@ -224,18 +240,16 @@ Can be used for creating/updating products on Amazon.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>skus</strong> &#8211; </li>
 <li><strong>datetime</strong> &#8211; </li>
 <li><strong>response_group</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -247,10 +261,9 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -280,13 +293,16 @@ Can be used for creating/updating products on Amazon.</p>
 <dl class="method">
 <dt id="mws.mws.Reports.get_report">
 <code class="descname">get_report</code><span class="sig-paren">(</span><em>report_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Returns the contents of a report and the Content-MD5 header for the returned report body.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
+the GeneratedReportId of a ReportRequest.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
+flat file, or an XML document.</td>
 </tr>
 </tbody>
 </table>
@@ -294,20 +310,26 @@ Can be used for creating/updating products on Amazon.</p>
 
 <dl class="method">
 <dt id="mws.mws.Reports.get_report_count">
-<code class="descname">get_report_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>acknowledged=None</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_count" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<code class="descname">get_report_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>acknowledged=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+available for download.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>report_types</strong> &#8211; </li>
-<li><strong>acknowledged</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>report_types</strong> &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+false to list order reports that have not been acknowledged. This filter is valid only with order
+reports; it does not work with listing reports.</li>
+<li><strong>from_date</strong> &#8211; The earliest date you are looking for, in ISO 8601 date time format.</li>
+<li><strong>to_date</strong> &#8211; The most recent date you are looking for, in ISO 8601 date time format.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+available for download.</p>
 </td>
 </tr>
 </tbody>
@@ -316,22 +338,28 @@ Can be used for creating/updating products on Amazon.</p>
 
 <dl class="method">
 <dt id="mws.mws.Reports.get_report_list">
-<code class="descname">get_report_list</code><span class="sig-paren">(</span><em>requestids=()</em>, <em>max_count=None</em>, <em>types=()</em>, <em>acknowledged=None</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_list" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<code class="descname">get_report_list</code><span class="sig-paren">(</span><em>request_ids=()</em>, <em>max_count=None</em>, <em>types=()</em>, <em>acknowledged=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of reports that were created in the previous 90 days.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>requestids</strong> &#8211; </li>
-<li><strong>max_count</strong> &#8211; </li>
-<li><strong>types</strong> &#8211; </li>
-<li><strong>acknowledged</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>request_ids</strong> &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+conditions are ignored.</li>
+<li><strong>max_count</strong> &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
+specify a number greater than 100, the request is rejected.</li>
+<li><strong>types</strong> &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+false to list order reports that have not been acknowledged. This filter is valid only with order
+reports; it does not work with listing reports.</li>
+<li><strong>from_date</strong> &#8211; The earliest date you are looking for, in ISO 8601 date time format.</li>
+<li><strong>to_date</strong> &#8211; The most recent date you are looking for, in ISO 8601 date time format.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of reports that were created in the previous 90 days</p>
 </td>
 </tr>
 </tbody>
@@ -347,56 +375,51 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.mws.Reports.get_report_request_count">
-<code class="descname">get_report_request_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>processingstatuses=()</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_count" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_report_request_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>processing_statuses=()</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_count" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>report_types</strong> &#8211; </li>
-<li><strong>processingstatuses</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; </li>
+<li><strong>to_date</strong> &#8211; </li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
 </td>
 </tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.mws.Reports.get_report_request_list">
-<code class="descname">get_report_request_list</code><span class="sig-paren">(</span><em>requestids=()</em>, <em>types=()</em>, <em>processingstatuses=()</em>, <em>max_count=None</em>, <em>fromdate=None</em>, <em>todate=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_report_request_list</code><span class="sig-paren">(</span><em>request_ids=()</em>, <em>types=()</em>, <em>processing_statuses=()</em>, <em>max_count=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_list" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>requestids</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request_ids</strong> &#8211; </li>
 <li><strong>types</strong> &#8211; </li>
-<li><strong>processingstatuses</strong> &#8211; </li>
+<li><strong>processing_statuses</strong> &#8211; </li>
 <li><strong>max_count</strong> &#8211; </li>
-<li><strong>fromdate</strong> &#8211; </li>
-<li><strong>todate</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; </li>
+<li><strong>to_date</strong> &#8211; </li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
 </td>
 </tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -408,10 +431,9 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -423,10 +445,9 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>types</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -438,32 +459,29 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>types</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.mws.Reports.request_report">
-<code class="descname">request_report</code><span class="sig-paren">(</span><em>report_type</em>, <em>start_date=None</em>, <em>end_date=None</em>, <em>marketplaceids=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.request_report" title="Permalink to this definition">¶</a></dt>
+<code class="descname">request_report</code><span class="sig-paren">(</span><em>report_type</em>, <em>start_date=None</em>, <em>end_date=None</em>, <em>marketplace_ids=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.request_report" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>report_type</strong> &#8211; </li>
 <li><strong>start_date</strong> &#8211; </li>
 <li><strong>end_date</strong> &#8211; </li>
-<li><strong>marketplaceids</strong> &#8211; </li>
+<li><strong>marketplace_ids</strong> &#8211; </li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
 </td>
 </tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -497,10 +515,9 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>amazon_order_ids</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -512,10 +529,9 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>amazon_order_id</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -527,39 +543,36 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.mws.Orders.list_orders">
-<code class="descname">list_orders</code><span class="sig-paren">(</span><em>marketplaceids</em>, <em>created_after=None</em>, <em>created_before=None</em>, <em>lastupdatedafter=None</em>, <em>lastupdatedbefore=None</em>, <em>orderstatus=()</em>, <em>fulfillment_channels=()</em>, <em>payment_methods=()</em>, <em>buyer_email=None</em>, <em>seller_orderid=None</em>, <em>max_results='100'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.list_orders" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_orders</code><span class="sig-paren">(</span><em>marketplace_ids</em>, <em>created_after=None</em>, <em>created_before=None</em>, <em>last_updated_after=None</em>, <em>last_updated_before=None</em>, <em>order_status=()</em>, <em>fulfillment_channels=()</em>, <em>payment_methods=()</em>, <em>buyer_email=None</em>, <em>seller_order_id=None</em>, <em>max_results='100'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.list_orders" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>marketplaceids</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_ids</strong> &#8211; </li>
 <li><strong>created_after</strong> &#8211; </li>
 <li><strong>created_before</strong> &#8211; </li>
-<li><strong>lastupdatedafter</strong> &#8211; </li>
-<li><strong>lastupdatedbefore</strong> &#8211; </li>
-<li><strong>orderstatus</strong> &#8211; </li>
+<li><strong>last_updated_after</strong> &#8211; </li>
+<li><strong>last_updated_before</strong> &#8211; </li>
+<li><strong>order_status</strong> &#8211; </li>
 <li><strong>fulfillment_channels</strong> &#8211; </li>
 <li><strong>payment_methods</strong> &#8211; </li>
 <li><strong>buyer_email</strong> &#8211; </li>
-<li><strong>seller_orderid</strong> &#8211; </li>
+<li><strong>seller_order_id</strong> &#8211; </li>
 <li><strong>max_results</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -571,10 +584,9 @@ Can be used for creating/updating products on Amazon.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -608,39 +620,35 @@ based on the ASIN and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.mws.Products.get_competitive_pricing_for_sku">
-<code class="descname">get_competitive_pricing_for_sku</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>skus</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_competitive_pricing_for_sku" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_competitive_pricing_for_sku</code><span class="sig-paren">(</span><em>marketplace_id</em>, <em>skus</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_competitive_pricing_for_sku" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the current competitive pricing of a product,
 based on the SellerSKU and MarketplaceId that you specify.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>marketplaceid</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_id</strong> &#8211; </li>
 <li><strong>skus</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -650,7 +658,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -658,11 +666,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -672,7 +678,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>skus</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -680,11 +686,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -694,7 +698,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asin</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -702,11 +706,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -716,7 +718,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>sku</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -724,11 +726,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -740,22 +740,20 @@ ASIN values that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.mws.Products.get_matching_product_for_id">
-<code class="descname">get_matching_product_for_id</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>type</em>, <em>ids</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_matching_product_for_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_matching_product_for_id</code><span class="sig-paren">(</span><em>marketplace_id</em>, <em>types</em>, <em>ids</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_matching_product_for_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of products and their attributes, based on a list of
 product identifier values (ASIN, SellerSKU, UPC, EAN, ISBN, GCID  and JAN)
 The identifier type is case sensitive.
@@ -764,18 +762,16 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>marketplaceid</strong> &#8211; </li>
-<li><strong>type</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_id</strong> &#8211; </li>
+<li><strong>types</strong> &#8211; </li>
 <li><strong>ids</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -785,18 +781,16 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -806,18 +800,16 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>skus</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -827,17 +819,15 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asin</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -847,17 +837,15 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>sku</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -871,18 +859,16 @@ or it can be a product identifier such as a UPC, EAN, ISBN, or JAN.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>query</strong> &#8211; </li>
 <li><strong>contextid</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -918,10 +904,9 @@ returns the time when recommendations were last updated for each category.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>marketplaceid</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -932,17 +917,15 @@ returns the time when recommendations were last updated for each category.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>recommendationcategory</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -955,10 +938,9 @@ returns the time when recommendations were last updated for each category.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -989,14 +971,7 @@ returns the time when recommendations were last updated for each category.</p>
 <dd><p>Returns a list of marketplaces a seller can participate in and
 a list of participations that include seller-specific information in that marketplace.
 The operation returns only those marketplaces where the seller&#8217;s account is in an active state.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -1010,10 +985,9 @@ Based on the &#8220;NextToken&#8221;.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -1067,20 +1041,18 @@ stickerless, commingled inventory.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>ship_from_address</strong> &#8211; </li>
+<li><strong>inbound_shipment_plan_request_items</strong> &#8211; </li>
 <li><strong>ship_to_country_code</strong> &#8211; </li>
 <li><strong>ship_to_country_ship_to_country_subdivision_code</strong> &#8211; </li>
 <li><strong>label_prep_preference</strong> &#8211; </li>
-<li><strong>inbound_shipment_plan_request_items</strong> &#8211; </li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
 </td>
 </tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -1094,7 +1066,7 @@ shipment to Amazon&#8217;s fulfillment network.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>asin_list</strong> &#8211; </li>
+<li><strong>asin_inbound_guidance_list</strong> &#8211; </li>
 <li><strong>marketplace_id</strong> &#8211; </li>
 </ul>
 </td>
@@ -1142,9 +1114,9 @@ LastUpdatedBefore request parameters are ignored.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>shipment_id</strong> &#8211; int</li>
-<li><strong>last_updated_after</strong> &#8211; date</li>
-<li><strong>last_updated_before</strong> &#8211; date</li>
+<li><strong>shipment_id</strong> &#8211; </li>
+<li><strong>last_updated_after</strong> &#8211; </li>
+<li><strong>last_updated_before</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -1164,7 +1136,8 @@ Based on the &#8220;NextToken&#8221;.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; A string token returned in the response of your previous request to either ListInboundShipmentItems or ListInboundShipmentItemsByNextToken.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; A string token returned in the response of your previous request to either ListInboundShipmentItems
+or ListInboundShipmentItemsByNextToken.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of items contained in an inbound shipment</td>
 </tr>
@@ -1350,10 +1323,16 @@ you can call this operation to get the current status.</p>
 </ul>
 </li>
 </ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="modules.html"
-                        title="previous chapter">mws</a></p>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">mws</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">mws</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1375,25 +1354,20 @@ you can call this operation to get the current status.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="modules.html" title="mws"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >mws</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2012, Paulo Alvarado.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/mws.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2012, Paulo Alvarado.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
-    </div>
+
+    
+
+    
   </body>
 </html>

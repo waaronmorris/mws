@@ -8,7 +8,7 @@
     
     <title>Products &#8212; Python Amazon MWS 0.8 documentation</title>
     
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,27 +27,16 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="Python Amazon MWS 0.8 documentation" href="index.html" />
     <link rel="next" title="Sellers" href="sellers.html" />
-    <link rel="prev" title="Orders" href="orders.html" /> 
+    <link rel="prev" title="Orders" href="orders.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
   </head>
   <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="sellers.html" title="Sellers"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="orders.html" title="Orders"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -69,39 +58,35 @@ based on the ASIN and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.Products.get_competitive_pricing_for_sku">
-<code class="descname">get_competitive_pricing_for_sku</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>skus</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Products.get_competitive_pricing_for_sku" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_competitive_pricing_for_sku</code><span class="sig-paren">(</span><em>marketplace_id</em>, <em>skus</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Products.get_competitive_pricing_for_sku" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the current competitive pricing of a product,
 based on the SellerSKU and MarketplaceId that you specify.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>marketplaceid</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_id</strong> &#8211; </li>
 <li><strong>skus</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -111,7 +96,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -119,11 +104,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -133,7 +116,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>skus</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -141,11 +124,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -155,7 +136,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asin</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -163,11 +144,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -177,7 +156,7 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>sku</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
@@ -185,11 +164,9 @@ based on the SellerSKU and MarketplaceId that you specify.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -201,22 +178,20 @@ ASIN values that you specify.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="mws.Products.get_matching_product_for_id">
-<code class="descname">get_matching_product_for_id</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>type</em>, <em>ids</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Products.get_matching_product_for_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_matching_product_for_id</code><span class="sig-paren">(</span><em>marketplace_id</em>, <em>types</em>, <em>ids</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Products.get_matching_product_for_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of products and their attributes, based on a list of
 product identifier values (ASIN, SellerSKU, UPC, EAN, ISBN, GCID  and JAN)
 The identifier type is case sensitive.
@@ -225,18 +200,16 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>marketplaceid</strong> &#8211; </li>
-<li><strong>type</strong> &#8211; </li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_id</strong> &#8211; </li>
+<li><strong>types</strong> &#8211; </li>
 <li><strong>ids</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -246,18 +219,16 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asins</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -267,18 +238,16 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>skus</strong> &#8211; </li>
 <li><strong>condition</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -288,17 +257,15 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>asin</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -308,17 +275,15 @@ Added in Fourth Release, API version 2011-10-01</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>sku</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
@@ -332,18 +297,16 @@ or it can be a product identifier such as a UPC, EAN, ISBN, or JAN.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>marketplaceid</strong> &#8211; </li>
 <li><strong>query</strong> &#8211; </li>
 <li><strong>contextid</strong> &#8211; </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
-</td>
-</tr>
 </tbody>
 </table>
+<p>Returns:</p>
 </dd></dl>
 
 </dd></dl>
@@ -355,13 +318,15 @@ or it can be a product identifier such as a UPC, EAN, ISBN, or JAN.</p>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="orders.html"
-                        title="previous chapter">Orders</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="sellers.html"
-                        title="next chapter">Sellers</a></p>
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="orders.html" title="previous chapter">Orders</a></li>
+      <li>Next: <a href="sellers.html" title="next chapter">Sellers</a></li>
+  </ul></li>
+</ul>
+</div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -383,27 +348,20 @@ or it can be a product identifier such as a UPC, EAN, ISBN, or JAN.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="sellers.html" title="Sellers"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="orders.html" title="Orders"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li> 
-      </ul>
+    <div class="footer">
+      &copy;2012, Paulo Alvarado.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/products.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2012, Paulo Alvarado.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
-    </div>
+
+    
+
+    
   </body>
 </html>
