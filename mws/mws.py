@@ -428,20 +428,19 @@ class Feeds(MWS):
         Returns a list of all feed submissions submitted in the previous 90 days.
 
         Args:
-            feed_ids (:obj:`list` of :obj:`str`: A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId
-                values in a request, other query conditions are ignored.
-            max_count (int): A non-negative integer that indicates the maximum number of feed submissions to return in the
-                list. If you specify a number greater than 100, the request is rejected.
-            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter the list of feed
-                submissions.
-            processing_statuses (:obj:`list` of :obj:`str`): A structured list of one or more feed processing statuses by which to filter the list
-                of feed submissions.
+            feed_ids (:obj:`list` of :obj:`str`): A structured list of no more than 100 FeedSubmmissionId values.
+                If you pass in FeedSubmmissionId values in a request, other query conditions are ignored.
+            max_count (int): A non-negative integer that indicates the maximum number of feed submissions to return in
+                the list. If you specify a number greater than 100, the request is rejected.
+            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter
+                the list of feed submissions.
+            processing_statuses (:obj:`list` of :obj:`str`): A structured list of one or more feed processing statuses
+                by which to filter the list of feed submissions.
             from_date: The earliest submission date that you are looking for, in ISO8601 date format.
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
 
         Returns:
             Returns a list of all feed submissions submitted in the previous 90 days.
-
         """
 
         data = dict(Action='GetFeedSubmissionList',
@@ -472,16 +471,15 @@ class Feeds(MWS):
         """
 
         Args:
-            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter the list of feed
-                submissions, processing_statuses: A structured list of one or more feed processing statuses by which to
-                filter the list of feed submissions.
+            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter
+                the list of feed submissions, processing_statuses: A structured list of one or more feed processing
+                statuses by which to filter the list of feed submissions.
             processing_statuses:
             from_date: The earliest submission date that you are looking for, in ISO8601 date format.
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
 
         Returns:
             Amazon MWS returns an XML file that contains the response to a successful request or subscription.
-            If the request is unsuccessful, the main response element is ErrorResponse.
         """
         data = dict(Action='GetFeedSubmissionCount',
                     SubmittedFromDate=from_date,
@@ -503,8 +501,6 @@ class Feeds(MWS):
 
         Returns:
             Amazon MWS returns an XML file that contains the response to a successful request or subscription.
-            If the request is unsuccessful, the main response element is ErrorResponse.
-
         """
         data = dict(Action='CancelFeedSubmissions',
                     SubmittedFromDate=from_date,
@@ -726,13 +722,10 @@ class Reports(MWS):
         return self.make_request(data)
 
 
-"""
-### Orders ###
-"""
-
-
 class Orders(MWS):
-    """ Amazon Orders API """
+    """
+    Amazon Orders API
+    """
 
     URI = "/Orders/2013-09-01"
     VERSION = "2013-09-01"

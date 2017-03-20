@@ -86,8 +86,7 @@ submissions.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
-If the request is unsuccessful, the main response element is ErrorResponse.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.</p>
 </td>
 </tr>
 </tbody>
@@ -102,17 +101,16 @@ If the request is unsuccessful, the main response element is ErrorResponse.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter the list of feed
-submissions, processing_statuses: A structured list of one or more feed processing statuses by which to
-filter the list of feed submissions.</li>
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter
+the list of feed submissions, processing_statuses: A structured list of one or more feed processing
+statuses by which to filter the list of feed submissions.</li>
 <li><strong>processing_statuses</strong> &#8211; </li>
 <li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
 <li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
-If the request is unsuccessful, the main response element is ErrorResponse.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.</p>
 </td>
 </tr>
 </tbody>
@@ -123,21 +121,19 @@ If the request is unsuccessful, the main response element is ErrorResponse.</p>
 <dt id="mws.mws.Feeds.get_feed_submission_list">
 <code class="descname">get_feed_submission_list</code><span class="sig-paren">(</span><em>feed_ids=None</em>, <em>max_count=None</em>, <em>feed_types=None</em>, <em>processing_statuses=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all feed submissions submitted in the previous 90 days.</p>
-<dl class="docutils">
-<dt>:param feed_ids (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>: A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId</dt>
-<dd>values in a request, other query conditions are ignored.</dd>
-</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that indicates the maximum number of feed submissions to return in the
-list. If you specify a number greater than 100, the request is rejected.</li>
-<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter the list of feed
-submissions.</li>
-<li><strong>processing_statuses</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more feed processing statuses by which to filter the list
-of feed submissions.</li>
+<li><strong>feed_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of no more than 100 FeedSubmmissionId values.
+If you pass in FeedSubmmissionId values in a request, other query conditions are ignored.</li>
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that indicates the maximum number of feed submissions to return in
+the list. If you specify a number greater than 100, the request is rejected.</li>
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter
+the list of feed submissions.</li>
+<li><strong>processing_statuses</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more feed processing statuses
+by which to filter the list of feed submissions.</li>
 <li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
 <li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
 </ul>

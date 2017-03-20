@@ -1,6 +1,6 @@
-############
+#######
 Reports
-############
+#######
 
 Here is a very simple example of how to retrieve a report from Amazon
 (assuming you already have a report ID from a different request, or from seller central)
@@ -20,7 +20,6 @@ using the python-amazon-mws wrapper.
     report = x.get_report(report_id=reportid)
     response_data = report.original
     print response_data
-
 
 .. autoclass:: mws.Reports
    :members:
