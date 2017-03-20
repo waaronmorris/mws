@@ -193,15 +193,17 @@ class MWS(object):
         """
         Initialize the MWS object.
 
-        :param access_key:
-        :param secret_key:
-        :param account_id:
-        :param region:
-        :param domain:
-        :param uri:
-        :param version:
-        :param auth_token:
+        Args:
+            access_key:
+            secret_key:
+            account_id:
+            region:
+            domain:
+            uri:
+            version:
+            auth_token:
         """
+
         self.access_key = access_key
         self.secret_key = secret_key
         self.account_id = account_id
@@ -426,13 +428,13 @@ class Feeds(MWS):
         Returns a list of all feed submissions submitted in the previous 90 days.
 
         Args:
-            feed_ids: A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId
+            feed_ids (:obj:`list` of :obj:`str`: A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId
                 values in a request, other query conditions are ignored.
-            max_count: A non-negative integer that indicates the maximum number of feed submissions to return in the
+            max_count (int): A non-negative integer that indicates the maximum number of feed submissions to return in the
                 list. If you specify a number greater than 100, the request is rejected.
-            feed_types: A structured list of one or more FeedType values by which to filter the list of feed
+            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter the list of feed
                 submissions.
-            processing_statuses: A structured list of one or more feed processing statuses by which to filter the list
+            processing_statuses (:obj:`list` of :obj:`str`): A structured list of one or more feed processing statuses by which to filter the list
                 of feed submissions.
             from_date: The earliest submission date that you are looking for, in ISO8601 date format.
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
@@ -455,7 +457,7 @@ class Feeds(MWS):
         """
 
         Args:
-            token: A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
+            token (str): A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
                 ListByNextToken where the value of HasNext was true.
 
         Returns:
@@ -470,7 +472,7 @@ class Feeds(MWS):
         """
 
         Args:
-            feed_types: A structured list of one or more FeedType values by which to filter the list of feed
+            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter the list of feed
                 submissions, processing_statuses: A structured list of one or more feed processing statuses by which to
                 filter the list of feed submissions.
             processing_statuses:
@@ -492,9 +494,9 @@ class Feeds(MWS):
         """
 
         Args:
-            feed_ids: A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId values in a
-                request, other query conditions are ignored.
-            feed_types: A structured list of one or more FeedType values by which to filter the list of feed
+            feed_ids (:obj:`list` of :obj:`str`): A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId
+                values in a request, other query conditions are ignored.
+            feed_types (:obj:`list` of :obj:`str`): A structured list of one or more FeedType values by which to filter the list of feed
                 submissions.
             from_date: The earliest submission date that you are looking for, in ISO8601 date format.
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
@@ -516,7 +518,7 @@ class Feeds(MWS):
         Returns the feed processing report and the Content-MD5 header.
 
         Args:
-            feed_id: The identifier of the feed submission you are requesting a feed processing report for. You can get
+            feed_id (:obj:`list` of :obj:`str`): The identifier of the feed submission you are requesting a feed processing report for. You can get
                 the FeedSubmissionId for a feed using the GetFeedSubmissionList operation.
 
         Returns:
@@ -538,7 +540,7 @@ class Reports(MWS):
         Returns the contents of a report and the Content-MD5 header for the returned report body.
 
         Args:
-            report_id: A unique identifier of the report to download, obtained from the GetReportList operation or
+            report_id (str): A unique identifier of the report to download, obtained from the GetReportList operation or
                 the GeneratedReportId of a ReportRequest.
 
         Returns:
@@ -555,8 +557,8 @@ class Reports(MWS):
         available for download.
 
         Args:
-            report_types: A structured list of ReportType enumeration values.
-            acknowledged: A Boolean value that indicates if an order report has been acknowledged by a prior call to
+            report_types (:obj:`list` of :obj:`str`): A structured list of ReportType enumeration values.
+            acknowledged (bool): A Boolean value that indicates if an order report has been acknowledged by a prior call to
                 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
                 false to list order reports that have not been acknowledged. This filter is valid only with order
                 reports; it does not work with listing reports.
@@ -581,12 +583,12 @@ class Reports(MWS):
         Returns a list of reports that were created in the previous 90 days.
 
         Args:
-            request_ids: A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+            request_ids (:obj:`list` of :obj:`str`): A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
                 conditions are ignored.
-            max_count: A non-negative integer that represents the maximum number of report requests to return. If you
+            max_count (int): A non-negative integer that represents the maximum number of report requests to return. If you
                 specify a number greater than 100, the request is rejected.
-            types: A structured list of ReportType enumeration values.
-            acknowledged: A Boolean value that indicates if an order report has been acknowledged by a prior call to
+            types (:obj:`list` of :obj:`str`): A structured list of ReportType enumeration values.
+            acknowledged (bool): A Boolean value that indicates if an order report has been acknowledged by a prior call to
                 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
                 false to list order reports that have not been acknowledged. This filter is valid only with order
                 reports; it does not work with listing reports.
@@ -610,7 +612,8 @@ class Reports(MWS):
         """
 
         Args:
-            token:
+            token (str): A string token returned in a previous call. Use the NextToken to call the operation again if
+                the return value of HasNext is true.
 
         Returns:
 

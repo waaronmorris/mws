@@ -77,9 +77,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feed_ids</strong> &#8211; A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId values in a
-request, other query conditions are ignored.</li>
-<li><strong>feed_types</strong> &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+<li><strong>feed_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId
+values in a request, other query conditions are ignored.</li>
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter the list of feed
 submissions.</li>
 <li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
 <li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
@@ -102,7 +102,7 @@ If the request is unsuccessful, the main response element is ErrorResponse.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feed_types</strong> &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter the list of feed
 submissions, processing_statuses: A structured list of one or more feed processing statuses by which to
 filter the list of feed submissions.</li>
 <li><strong>processing_statuses</strong> &#8211; </li>
@@ -123,18 +123,20 @@ If the request is unsuccessful, the main response element is ErrorResponse.</p>
 <dt id="mws.mws.Feeds.get_feed_submission_list">
 <code class="descname">get_feed_submission_list</code><span class="sig-paren">(</span><em>feed_ids=None</em>, <em>max_count=None</em>, <em>feed_types=None</em>, <em>processing_statuses=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all feed submissions submitted in the previous 90 days.</p>
+<dl class="docutils">
+<dt>:param feed_ids (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>: A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId</dt>
+<dd>values in a request, other query conditions are ignored.</dd>
+</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>feed_ids</strong> &#8211; A structured list of no more than 100 FeedSubmmissionId values. If you pass in FeedSubmmissionId
-values in a request, other query conditions are ignored.</li>
-<li><strong>max_count</strong> &#8211; A non-negative integer that indicates the maximum number of feed submissions to return in the
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that indicates the maximum number of feed submissions to return in the
 list. If you specify a number greater than 100, the request is rejected.</li>
-<li><strong>feed_types</strong> &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter the list of feed
 submissions.</li>
-<li><strong>processing_statuses</strong> &#8211; A structured list of one or more feed processing statuses by which to filter the list
+<li><strong>processing_statuses</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more feed processing statuses by which to filter the list
 of feed submissions.</li>
 <li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
 <li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
@@ -156,7 +158,7 @@ of feed submissions.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feed_id</strong> &#8211; The identifier of the feed submission you are requesting a feed processing report for. You can get
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feed_id</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; The identifier of the feed submission you are requesting a feed processing report for. You can get
 the FeedSubmissionId for a feed using the GetFeedSubmissionList operation.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The GetFeedSubmissionResult operation returns the feed processing report and the Content-MD5 header for the
@@ -173,7 +175,7 @@ returned HTTP body.</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> (<em>str</em>) &#8211; A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
 ListByNextToken where the value of HasNext was true.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
@@ -307,7 +309,7 @@ strings.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> (<em>str</em>) &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
 the GeneratedReportId of a ReportRequest.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
@@ -327,8 +329,8 @@ available for download.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>report_types</strong> &#8211; A structured list of ReportType enumeration values.</li>
-<li><strong>acknowledged</strong> &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+<li><strong>report_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
 false to list order reports that have not been acknowledged. This filter is valid only with order
 reports; it does not work with listing reports.</li>
@@ -354,12 +356,12 @@ available for download.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>request_ids</strong> &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+<li><strong>request_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
 conditions are ignored.</li>
-<li><strong>max_count</strong> &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
 specify a number greater than 100, the request is rejected.</li>
-<li><strong>types</strong> &#8211; A structured list of ReportType enumeration values.</li>
-<li><strong>acknowledged</strong> &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+<li><strong>types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
 false to list order reports that have not been acknowledged. This filter is valid only with order
 reports; it does not work with listing reports.</li>
@@ -382,7 +384,8 @@ reports; it does not work with listing reports.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> (<em>str</em>) &#8211; A string token returned in a previous call. Use the NextToken to call the operation again if
+the return value of HasNext is true.</td>
 </tr>
 </tbody>
 </table>

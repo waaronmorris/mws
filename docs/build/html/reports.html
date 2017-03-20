@@ -85,7 +85,7 @@ using the python-amazon-mws wrapper.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> (<em>str</em>) &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
 the GeneratedReportId of a ReportRequest.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
@@ -105,8 +105,8 @@ available for download.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>report_types</strong> &#8211; A structured list of ReportType enumeration values.</li>
-<li><strong>acknowledged</strong> &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+<li><strong>report_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
 false to list order reports that have not been acknowledged. This filter is valid only with order
 reports; it does not work with listing reports.</li>
@@ -132,12 +132,12 @@ available for download.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>request_ids</strong> &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+<li><strong>request_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
 conditions are ignored.</li>
-<li><strong>max_count</strong> &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
 specify a number greater than 100, the request is rejected.</li>
-<li><strong>types</strong> &#8211; A structured list of ReportType enumeration values.</li>
-<li><strong>acknowledged</strong> &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+<li><strong>types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
 false to list order reports that have not been acknowledged. This filter is valid only with order
 reports; it does not work with listing reports.</li>
@@ -160,7 +160,8 @@ reports; it does not work with listing reports.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> (<em>str</em>) &#8211; A string token returned in a previous call. Use the NextToken to call the operation again if
+the return value of HasNext is true.</td>
 </tr>
 </tbody>
 </table>
