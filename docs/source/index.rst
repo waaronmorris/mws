@@ -33,6 +33,7 @@ APIs
     orders.rst
     products.rst
     sellers.rst
+    modules.rst
 
 
 

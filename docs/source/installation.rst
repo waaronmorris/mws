@@ -11,14 +11,14 @@ Setup API Access
 	This screen will contain the following credentials:
 		* Merchant Id (or Seller Id) - This is your unique merchant/seller ID
 		* Marketplace Id - This is the id for the marketplace you are selling on.
-						    It allows you to target specific markerplaces (US, Japan, Europe, etc..) in which you are authorized to sell.
+		It allows you to target specific markerplaces (US, Japan, Europe, etc..) in which you are authorized to sell.
 		* Access key - Used to identify the user of this API.
 		* Secret key - This is used to authenticate every request sent to Amazon
 	Make sure to keep this confidential as these credentials can potentially compromise your account.
 
 
 Test API Access
------------------
+---------------
 
 * Go to https://mws.amazonservices.com/scratchpad/index.html (you can change the domain .com like before)
 * In API selection, choose **Products** and *ListMatchingProducts*

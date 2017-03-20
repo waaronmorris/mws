@@ -937,17 +937,17 @@ class InboundShipments(MWS):
     URI = "/FulfillmentInboundShipment/2010-10-01"
     VERSION = '2010-10-01'
 
-    def list_inbound_shipment_items(self, shipment_id = None, last_updated_after=None, last_updated_before=None):
+    def list_inbound_shipment_items(self, shipment_id=None, last_updated_after=None, last_updated_before=None):
         """
-            Returns a list of items contained in an inbound shipment that you specify with a ShipmentId.
-            Alternatively, if you submit the LastUpdatedAfter and LastUpdatedBefore request parameters,
-            the ListInboundShipmentItems operation returns inbound shipment items based on when the items
-            were last updated. Note that if you specify the ShipmentId, then the LastUpdatedAfter and
-            LastUpdatedBefore request parameters are ignored.
+        Returns a list of items contained in an inbound shipment that you specify with a ShipmentId.
+        Alternatively, if you submit the LastUpdatedAfter and LastUpdatedBefore request parameters,
+        the ListInboundShipmentItems operation returns inbound shipment items based on when the items
+        were last updated. Note that if you specify the ShipmentId, then the LastUpdatedAfter and
+        LastUpdatedBefore request parameters are ignored.
 
-        :param shipment_id:
-        :param last_updated_after:
-        :param last_updated_before:
+        :param shipment_id: int
+        :param last_updated_after: date
+        :param last_updated_before: date
         :return: a list of items contained in an inbound shipment
         """
         data = dict(Action='ListInboundShipmentItems',
@@ -961,9 +961,7 @@ class InboundShipments(MWS):
         Takes a "NextToken" and returns the same information as :func "list_inbound_shipment_items".
         Based on the "NextToken".
 
-        :param token: A string token returned in the response of your previous request
-        to either ListInboundShipmentItems or ListInboundShipmentItemsByNextToken.
-
+        :param token: A string token returned in the response of your previous request to either ListInboundShipmentItems or ListInboundShipmentItemsByNextToken.
         :return: a list of items contained in an inbound shipment
         """
         data = dict(Action='ListInboundShipmentItemsByNextToken',
