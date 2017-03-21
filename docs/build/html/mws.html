@@ -1,0 +1,1380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mws package &#8212; Python Amazon MWS 0.8 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Python Amazon MWS 0.8 documentation" href="index.html" />
+    <link rel="up" title="mws" href="modules.html" />
+    <link rel="prev" title="mws" href="modules.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="mws"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">mws</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mws-package">
+<h1>mws package<a class="headerlink" href="#mws-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mws.mws">
+<span id="mws-mws-module"></span><h2>mws.mws module<a class="headerlink" href="#module-mws.mws" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mws.mws.Feeds">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Feeds</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>Amazon MWS Feeds API</p>
+<dl class="attribute">
+<dt id="mws.mws.Feeds.ACCOUNT_TYPE">
+<code class="descname">ACCOUNT_TYPE</code><em class="property"> = 'Merchant'</em><a class="headerlink" href="#mws.mws.Feeds.ACCOUNT_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Feeds.cancel_feed_submissions">
+<code class="descname">cancel_feed_submissions</code><span class="sig-paren">(</span><em>feed_ids=None</em>, <em>feed_types=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.cancel_feed_submissions" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>feed_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of FeedSubmmissionId values. If you pass in FeedSubmmissionId
+values in a request, other query conditions are ignored.</li>
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter the list of feed
+submissions.</li>
+<li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
+<li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Feeds.get_feed_submission_count">
+<code class="descname">get_feed_submission_count</code><span class="sig-paren">(</span><em>feed_types=None</em>, <em>processing_statuses=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter
+the list of feed submissions, processing_statuses: A structured list of one or more feed processing
+statuses by which to filter the list of feed submissions.</li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
+<li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Amazon MWS returns an XML file that contains the response to a successful request or subscription.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Feeds.get_feed_submission_list">
+<code class="descname">get_feed_submission_list</code><span class="sig-paren">(</span><em>feed_ids=None</em>, <em>max_count=None</em>, <em>feed_types=None</em>, <em>processing_statuses=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all feed submissions submitted in the previous 90 days.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>feed_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of no more than 100 FeedSubmmissionId values.
+If you pass in FeedSubmmissionId values in a request, other query conditions are ignored.</li>
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that indicates the maximum number of feed submissions to return in
+the list. If you specify a number greater than 100, the request is rejected.</li>
+<li><strong>feed_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more FeedType values by which to filter
+the list of feed submissions.</li>
+<li><strong>processing_statuses</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of one or more feed processing statuses
+by which to filter the list of feed submissions.</li>
+<li><strong>from_date</strong> &#8211; The earliest submission date that you are looking for, in ISO8601 date format.</li>
+<li><strong>to_date</strong> &#8211; The latest submission date that you are looking for, in ISO8601 date format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns a list of all feed submissions submitted in the previous 90 days.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Feeds.get_feed_submission_result">
+<code class="descname">get_feed_submission_result</code><span class="sig-paren">(</span><em>feed_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_feed_submission_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the feed processing report and the Content-MD5 header.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>feed_id</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; The identifier of the feed submission you are requesting a feed processing report for. You can get
+the FeedSubmissionId for a feed using the GetFeedSubmissionList operation.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The GetFeedSubmissionResult operation returns the feed processing report and the Content-MD5 header for the
+returned HTTP body.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Feeds.get_submission_list_by_next_token">
+<code class="descname">get_submission_list_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.get_submission_list_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> (<em>str</em>) &#8211; A string token returned by a previous request to either GetFeedSubmissionList or GetFeedSubmission
+ListByNextToken where the value of HasNext was true.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+If the request is unsuccessful, the main response element is ErrorResponse.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Feeds.submit_feed">
+<code class="descname">submit_feed</code><span class="sig-paren">(</span><em>feed</em>, <em>feed_type</em>, <em>marketplace_ids=None</em>, <em>content_type='text/xml'</em>, <em>purge='false'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Feeds.submit_feed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uploads a feed ( xml or .tsv ) to the seller&#8217;s inventory.
+Can be used for creating/updating products on Amazon.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>feed</strong> (<code class="xref py py-obj docutils literal"><span class="pre">HTTP-BODY</span></code>) &#8211; The actual content of the feed itself, in XML or flat file format. You must include
+the FeedContent in the body of the HTTP request</li>
+<li><strong>feed_type</strong> (<code class="xref py py-obj docutils literal"><span class="pre">FeedType</span></code>) &#8211; A FeedType value indicating how the data should be processed.
+Second line of description should be indented.</li>
+<li><strong>marketplace_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A list of one or more marketplace IDs (of marketplaces you are
+registered to sell in) that you want the feed to be applied to. The feed will be applied to all the
+marketplaces you specify.</li>
+<li><strong>content_type</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; Your feeds must be in a valid encoding based on your marketplace and
+file type, and that encoding must be specified as an HTTP Content-Type header. The following table shows
+the HTTP Content-Type header you should use for flat files and XML files for each marketplace</li>
+<li><strong>purge</strong> (<code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A Boolean value that enables the purge and replace functionality. Set to true
+to purge and replace the existing data; otherwise false. This value only applies to product-related flat
+file feed types, which do not have a mechanism for specifying purge and replace in the feed body.
+Use this parameter only in exceptional cases. Usage is throttled to allow only one purge and replace
+within a 24-hour period.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A dict mapping keys to the corresponding table row data fetched. Each row is represented as a tuple of
+strings.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.Inventory">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Inventory</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Inventory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>Amazon MWS Inventory Fulfillment API</p>
+<dl class="attribute">
+<dt id="mws.mws.Inventory.NS">
+<code class="descname">NS</code><em class="property"> = '{http://mws.amazonaws.com/FulfillmentInventory/2010-10-01}'</em><a class="headerlink" href="#mws.mws.Inventory.NS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Inventory.URI">
+<code class="descname">URI</code><em class="property"> = '/FulfillmentInventory/2010-10-01'</em><a class="headerlink" href="#mws.mws.Inventory.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Inventory.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2010-10-01'</em><a class="headerlink" href="#mws.mws.Inventory.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Inventory.list_inventory_supply">
+<code class="descname">list_inventory_supply</code><span class="sig-paren">(</span><em>skus=()</em>, <em>datetime=None</em>, <em>response_group='Basic'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Inventory.list_inventory_supply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns information on available inventory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>skus</strong> &#8211; </li>
+<li><strong>datetime</strong> &#8211; </li>
+<li><strong>response_group</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Inventory.list_inventory_supply_by_next_token">
+<code class="descname">list_inventory_supply_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Inventory.list_inventory_supply_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="mws.mws.MWSError">
+<em class="property">exception </em><code class="descclassname">mws.mws.</code><code class="descname">MWSError</code><a class="headerlink" href="#mws.mws.MWSError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>Main MWS Exception class</p>
+<dl class="attribute">
+<dt id="mws.mws.MWSError.response">
+<code class="descname">response</code><em class="property"> = None</em><a class="headerlink" href="#mws.mws.MWSError.response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.Reports">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Reports</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>#Amazon MWS Reports API#</p>
+<dl class="attribute">
+<dt id="mws.mws.Reports.ACCOUNT_TYPE">
+<code class="descname">ACCOUNT_TYPE</code><em class="property"> = 'Merchant'</em><a class="headerlink" href="#mws.mws.Reports.ACCOUNT_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report">
+<code class="descname">get_report</code><span class="sig-paren">(</span><em>report_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the contents of a report and the Content-MD5 header for the returned report body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> (<em>str</em>) &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
+the GeneratedReportId of a ReportRequest.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
+flat file, or an XML document.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_count">
+<code class="descname">get_report_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>acknowledged=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+available for download.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>report_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+false to list order reports that have not been acknowledged. This filter is valid only with order
+reports; it does not work with listing reports.</li>
+<li><strong>from_date</strong> &#8211; The earliest date you are looking for, in ISO 8601 date time format.</li>
+<li><strong>to_date</strong> &#8211; The most recent date you are looking for, in ISO 8601 date time format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+available for download.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_list">
+<code class="descname">get_report_list</code><span class="sig-paren">(</span><em>request_ids=()</em>, <em>max_count=None</em>, <em>types=()</em>, <em>acknowledged=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of reports that were created in the previous 90 days.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+conditions are ignored.</li>
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
+specify a number greater than 100, the request is rejected.</li>
+<li><strong>types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+false to list order reports that have not been acknowledged. This filter is valid only with order
+reports; it does not work with listing reports.</li>
+<li><strong>from_date</strong> &#8211; The earliest date you are looking for, in ISO 8601 date time format.</li>
+<li><strong>to_date</strong> &#8211; The most recent date you are looking for, in ISO 8601 date time format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of reports that were created in the previous 90 days</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_list_by_next_token">
+<code class="descname">get_report_list_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_list_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> (<em>str</em>) &#8211; A string token returned in a previous call. Use the NextToken to call the operation again if
+the return value of HasNext is true.</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_request_count">
+<code class="descname">get_report_request_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>processing_statuses=()</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>report_types</strong> &#8211; </li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; </li>
+<li><strong>to_date</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_request_list">
+<code class="descname">get_report_request_list</code><span class="sig-paren">(</span><em>request_ids=()</em>, <em>types=()</em>, <em>processing_statuses=()</em>, <em>max_count=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_list" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request_ids</strong> &#8211; </li>
+<li><strong>types</strong> &#8211; </li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>max_count</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; </li>
+<li><strong>to_date</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_request_list_by_next_token">
+<code class="descname">get_report_request_list_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_request_list_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_schedule_count">
+<code class="descname">get_report_schedule_count</code><span class="sig-paren">(</span><em>types=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_schedule_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>types</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.get_report_schedule_list">
+<code class="descname">get_report_schedule_list</code><span class="sig-paren">(</span><em>types=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.get_report_schedule_list" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>types</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Reports.request_report">
+<code class="descname">request_report</code><span class="sig-paren">(</span><em>report_type</em>, <em>start_date=None</em>, <em>end_date=None</em>, <em>marketplace_ids=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Reports.request_report" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>report_type</strong> &#8211; </li>
+<li><strong>start_date</strong> &#8211; </li>
+<li><strong>end_date</strong> &#8211; </li>
+<li><strong>marketplace_ids</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.Orders">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Orders</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>Amazon Orders API</p>
+<dl class="attribute">
+<dt id="mws.mws.Orders.NS">
+<code class="descname">NS</code><em class="property"> = '{https://mws.amazonservices.com/Orders/2013-09-01}'</em><a class="headerlink" href="#mws.mws.Orders.NS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Orders.URI">
+<code class="descname">URI</code><em class="property"> = '/Orders/2013-09-01'</em><a class="headerlink" href="#mws.mws.Orders.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Orders.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2013-09-01'</em><a class="headerlink" href="#mws.mws.Orders.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Orders.get_order">
+<code class="descname">get_order</code><span class="sig-paren">(</span><em>amazon_order_ids</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.get_order" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>amazon_order_ids</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Orders.list_order_items">
+<code class="descname">list_order_items</code><span class="sig-paren">(</span><em>amazon_order_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.list_order_items" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>amazon_order_id</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Orders.list_order_items_by_next_token">
+<code class="descname">list_order_items_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.list_order_items_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Orders.list_orders">
+<code class="descname">list_orders</code><span class="sig-paren">(</span><em>marketplace_ids</em>, <em>created_after=None</em>, <em>created_before=None</em>, <em>last_updated_after=None</em>, <em>last_updated_before=None</em>, <em>order_status=()</em>, <em>fulfillment_channels=()</em>, <em>payment_methods=()</em>, <em>buyer_email=None</em>, <em>seller_order_id=None</em>, <em>max_results='100'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.list_orders" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_ids</strong> &#8211; </li>
+<li><strong>created_after</strong> &#8211; </li>
+<li><strong>created_before</strong> &#8211; </li>
+<li><strong>last_updated_after</strong> &#8211; </li>
+<li><strong>last_updated_before</strong> &#8211; </li>
+<li><strong>order_status</strong> &#8211; </li>
+<li><strong>fulfillment_channels</strong> &#8211; </li>
+<li><strong>payment_methods</strong> &#8211; </li>
+<li><strong>buyer_email</strong> &#8211; </li>
+<li><strong>seller_order_id</strong> &#8211; </li>
+<li><strong>max_results</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Orders.list_orders_by_next_token">
+<code class="descname">list_orders_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Orders.list_orders_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.Products">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Products</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>Amazon MWS Products API</p>
+<dl class="attribute">
+<dt id="mws.mws.Products.NS">
+<code class="descname">NS</code><em class="property"> = '{http://mws.amazonservices.com/schema/Products/2011-10-01}'</em><a class="headerlink" href="#mws.mws.Products.NS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Products.URI">
+<code class="descname">URI</code><em class="property"> = '/Products/2011-10-01'</em><a class="headerlink" href="#mws.mws.Products.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Products.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2011-10-01'</em><a class="headerlink" href="#mws.mws.Products.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_competitive_pricing_for_asin">
+<code class="descname">get_competitive_pricing_for_asin</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>asins</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_competitive_pricing_for_asin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current competitive pricing of a product,
+based on the ASIN and MarketplaceId that you specify.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>asins</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_competitive_pricing_for_sku">
+<code class="descname">get_competitive_pricing_for_sku</code><span class="sig-paren">(</span><em>marketplace_id</em>, <em>skus</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_competitive_pricing_for_sku" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current competitive pricing of a product,
+based on the SellerSKU and MarketplaceId that you specify.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_id</strong> &#8211; </li>
+<li><strong>skus</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_lowest_offer_listings_for_asin">
+<code class="descname">get_lowest_offer_listings_for_asin</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>asins</em>, <em>condition='Any'</em>, <em>excludeme='False'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_lowest_offer_listings_for_asin" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>asins</strong> &#8211; </li>
+<li><strong>condition</strong> &#8211; </li>
+<li><strong>excludeme</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_lowest_offer_listings_for_sku">
+<code class="descname">get_lowest_offer_listings_for_sku</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>skus</em>, <em>condition='Any'</em>, <em>excludeme='False'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_lowest_offer_listings_for_sku" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>skus</strong> &#8211; </li>
+<li><strong>condition</strong> &#8211; </li>
+<li><strong>excludeme</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_lowest_priced_offers_for_asin">
+<code class="descname">get_lowest_priced_offers_for_asin</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>asin</em>, <em>condition='New'</em>, <em>excludeme='False'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_lowest_priced_offers_for_asin" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>asin</strong> &#8211; </li>
+<li><strong>condition</strong> &#8211; </li>
+<li><strong>excludeme</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_lowest_priced_offers_for_sku">
+<code class="descname">get_lowest_priced_offers_for_sku</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>sku</em>, <em>condition='New'</em>, <em>excludeme='False'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_lowest_priced_offers_for_sku" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>sku</strong> &#8211; </li>
+<li><strong>condition</strong> &#8211; </li>
+<li><strong>excludeme</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_matching_product">
+<code class="descname">get_matching_product</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>asins</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_matching_product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of products and their attributes, based on a list of
+ASIN values that you specify.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>asins</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_matching_product_for_id">
+<code class="descname">get_matching_product_for_id</code><span class="sig-paren">(</span><em>marketplace_id</em>, <em>types</em>, <em>ids</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_matching_product_for_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of products and their attributes, based on a list of
+product identifier values (ASIN, SellerSKU, UPC, EAN, ISBN, GCID  and JAN)
+The identifier type is case sensitive.
+Added in Fourth Release, API version 2011-10-01</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplace_id</strong> &#8211; </li>
+<li><strong>types</strong> &#8211; </li>
+<li><strong>ids</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_my_price_for_asin">
+<code class="descname">get_my_price_for_asin</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>asins</em>, <em>condition=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_my_price_for_asin" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>asins</strong> &#8211; </li>
+<li><strong>condition</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_my_price_for_sku">
+<code class="descname">get_my_price_for_sku</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>skus</em>, <em>condition=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_my_price_for_sku" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>skus</strong> &#8211; </li>
+<li><strong>condition</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_product_categories_for_asin">
+<code class="descname">get_product_categories_for_asin</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>asin</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_product_categories_for_asin" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>asin</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.get_product_categories_for_sku">
+<code class="descname">get_product_categories_for_sku</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>sku</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.get_product_categories_for_sku" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>sku</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Products.list_matching_products">
+<code class="descname">list_matching_products</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>query</em>, <em>contextid=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Products.list_matching_products" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of products and their attributes, ordered by
+relevancy, based on a search query that you specify.
+Your search query can be a phrase that describes the product
+or it can be a product identifier such as a UPC, EAN, ISBN, or JAN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>query</strong> &#8211; </li>
+<li><strong>contextid</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.Recommendations">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Recommendations</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Recommendations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>Amazon MWS Recommendations API</p>
+<dl class="attribute">
+<dt id="mws.mws.Recommendations.NS">
+<code class="descname">NS</code><em class="property"> = '{https://mws.amazonservices.com/Recommendations/2013-04-01}'</em><a class="headerlink" href="#mws.mws.Recommendations.NS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Recommendations.URI">
+<code class="descname">URI</code><em class="property"> = '/Recommendations/2013-04-01'</em><a class="headerlink" href="#mws.mws.Recommendations.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Recommendations.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2013-04-01'</em><a class="headerlink" href="#mws.mws.Recommendations.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Recommendations.get_last_updated_time_for_recommendations">
+<code class="descname">get_last_updated_time_for_recommendations</code><span class="sig-paren">(</span><em>marketplaceid</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Recommendations.get_last_updated_time_for_recommendations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether there are active recommendations for each category for the given marketplace, and if there are,
+returns the time when recommendations were last updated for each category.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>marketplaceid</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Recommendations.list_recommendations">
+<code class="descname">list_recommendations</code><span class="sig-paren">(</span><em>marketplaceid</em>, <em>recommendationcategory=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Recommendations.list_recommendations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns your active recommendations for a specific category or for all categories for a specific marketplace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>marketplaceid</strong> &#8211; </li>
+<li><strong>recommendationcategory</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Recommendations.list_recommendations_by_next_token">
+<code class="descname">list_recommendations_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Recommendations.list_recommendations_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the next page of recommendations using the NextToken parameter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.Sellers">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">Sellers</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Sellers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<p>Amazon MWS Sellers API</p>
+<dl class="attribute">
+<dt id="mws.mws.Sellers.NS">
+<code class="descname">NS</code><em class="property"> = '{http://mws.amazonservices.com/schema/Sellers/2011-07-01}'</em><a class="headerlink" href="#mws.mws.Sellers.NS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Sellers.URI">
+<code class="descname">URI</code><em class="property"> = '/Sellers/2011-07-01'</em><a class="headerlink" href="#mws.mws.Sellers.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.Sellers.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2011-07-01'</em><a class="headerlink" href="#mws.mws.Sellers.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Sellers.list_marketplace_participations">
+<code class="descname">list_marketplace_participations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Sellers.list_marketplace_participations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of marketplaces a seller can participate in and
+a list of participations that include seller-specific information in that marketplace.
+The operation returns only those marketplaces where the seller&#8217;s account is in an active state.</p>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.Sellers.list_marketplace_participations_by_next_token">
+<code class="descname">list_marketplace_participations_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.Sellers.list_marketplace_participations_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a &#8220;NextToken&#8221; and returns the same information as &#8220;list_marketplace_participations&#8221;.
+Based on the &#8220;NextToken&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.mws.InboundShipments">
+<em class="property">class </em><code class="descclassname">mws.mws.</code><code class="descname">InboundShipments</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<dl class="attribute">
+<dt id="mws.mws.InboundShipments.URI">
+<code class="descname">URI</code><em class="property"> = '/FulfillmentInboundShipment/2010-10-01'</em><a class="headerlink" href="#mws.mws.InboundShipments.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.mws.InboundShipments.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2010-10-01'</em><a class="headerlink" href="#mws.mws.InboundShipments.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.InboundShipments.create_inbound_shipment">
+<code class="descname">create_inbound_shipment</code><span class="sig-paren">(</span><em>shipment_id</em>, <em>inbound_shipment_header</em>, <em>inbound_shipment_items</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments.create_inbound_shipment" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shipment_id</strong> &#8211; </li>
+<li><strong>inbound_shipment_header</strong> &#8211; </li>
+<li><strong>inbound_shipment_items</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.InboundShipments.create_inbound_shipment_plan">
+<code class="descname">create_inbound_shipment_plan</code><span class="sig-paren">(</span><em>ship_from_address</em>, <em>inbound_shipment_plan_request_items</em>, <em>ship_to_country_code=None</em>, <em>ship_to_country_ship_to_country_subdivision_code=None</em>, <em>label_prep_preference=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments.create_inbound_shipment_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>The CreateInboundShipmentPlan operation returns one or more inbound shipment plans, which provide the
+information you need to create one or more inbound shipments for a set of items that you specify.
+Multiple inbound shipment plans might be required so that items can be optimally placed in Amazon&#8217;s
+fulfillment network—for example, positioning inventory closer to the customer. Alternatively, two inbound
+shipment plans might be created with the same Amazon fulfillment center destination if the two shipment plans
+require different processing—for example, items that require labels must be shipped separately from
+stickerless, commingled inventory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ship_from_address</strong> &#8211; </li>
+<li><strong>inbound_shipment_plan_request_items</strong> &#8211; </li>
+<li><strong>ship_to_country_code</strong> &#8211; </li>
+<li><strong>ship_to_country_ship_to_country_subdivision_code</strong> &#8211; </li>
+<li><strong>label_prep_preference</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.InboundShipments.inbound_guidance_for_asin">
+<code class="descname">inbound_guidance_for_asin</code><span class="sig-paren">(</span><em>asin_inbound_guidance_list</em>, <em>marketplace_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments.inbound_guidance_for_asin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The GetInboundGuidanceForASIN operation lets a seller know if Amazon recommends sending a product to a
+given marketplace. In some cases, Amazon provides guidance for why a given ASIN is not recommended for
+shipment to Amazon&#8217;s fulfillment network.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>asin_inbound_guidance_list</strong> &#8211; </li>
+<li><strong>marketplace_id</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Dictionary of inbound guidance and reason</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.InboundShipments.inbound_guidance_for_sku">
+<code class="descname">inbound_guidance_for_sku</code><span class="sig-paren">(</span><em>sku_inbound_guidance_list</em>, <em>marketplace_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments.inbound_guidance_for_sku" title="Permalink to this definition">¶</a></dt>
+<dd><p>The GetInboundGuidanceForSKU operation lets a seller know if Amazon recommends sending an item to a given
+marketplace. In some cases, Amazon provides guidance for why a given Seller SKU is not recommended for
+shipment to Amazon&#8217;s fulfillment network.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sku_inbound_guidance_list</strong> &#8211; </li>
+<li><strong>marketplace_id</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Dictionary of inbound guidance and reason</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.InboundShipments.list_inbound_shipment_items">
+<code class="descname">list_inbound_shipment_items</code><span class="sig-paren">(</span><em>shipment_id=None</em>, <em>last_updated_after=None</em>, <em>last_updated_before=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments.list_inbound_shipment_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of items contained in an inbound shipment that you specify with a ShipmentId.
+Alternatively, if you submit the LastUpdatedAfter and LastUpdatedBefore request parameters,
+the ListInboundShipmentItems operation returns inbound shipment items based on when the items
+were last updated. Note that if you specify the ShipmentId, then the LastUpdatedAfter and
+LastUpdatedBefore request parameters are ignored.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shipment_id</strong> &#8211; </li>
+<li><strong>last_updated_after</strong> &#8211; </li>
+<li><strong>last_updated_before</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of items contained in an inbound shipment</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.mws.InboundShipments.list_inbound_shipment_items_by_next_token">
+<code class="descname">list_inbound_shipment_items_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.mws.InboundShipments.list_inbound_shipment_items_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a &#8220;NextToken&#8221; and returns the same information as :func &#8220;list_inbound_shipment_items&#8221;.
+Based on the &#8220;NextToken&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; A string token returned in the response of your previous request to either ListInboundShipmentItems
+or ListInboundShipmentItemsByNextToken.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of items contained in an inbound shipment</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mws.offamazonpayments">
+<span id="mws-offamazonpayments-module"></span><h2>mws.offamazonpayments module<a class="headerlink" href="#module-mws.offamazonpayments" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mws.offamazonpayments.OffAmazonPayments">
+<em class="property">class </em><code class="descclassname">mws.offamazonpayments.</code><code class="descname">OffAmazonPayments</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">mws.mws.MWS</span></code></p>
+<dl class="attribute">
+<dt id="mws.offamazonpayments.OffAmazonPayments.SANDBOX_URI">
+<code class="descname">SANDBOX_URI</code><em class="property"> = '/OffAmazonPayments_Sandbox/2013-01-01/'</em><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.SANDBOX_URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.offamazonpayments.OffAmazonPayments.URI">
+<code class="descname">URI</code><em class="property"> = '/OffAmazonPayments/2013-01-01/'</em><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mws.offamazonpayments.OffAmazonPayments.VERSION">
+<code class="descname">VERSION</code><em class="property"> = '2013-01-01'</em><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.VERSION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.authorize">
+<code class="descname">authorize</code><span class="sig-paren">(</span><em>order_ref</em>, <em>order_total</em>, <em>auth_id</em>, <em>timeout=60</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.authorize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.cancel_order_reference">
+<code class="descname">cancel_order_reference</code><span class="sig-paren">(</span><em>order_ref</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.cancel_order_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.capture">
+<code class="descname">capture</code><span class="sig-paren">(</span><em>auth_id</em>, <em>amount</em>, <em>capture_id</em>, <em>notes=''</em>, <em>currency='USD'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.capture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Captures funds
+:param auth_id: the authorization id you want to capture
+:param amount: the amount you wish to capture
+:param capture_id: An id that you make up
+:return: direct response from amazon</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.close_authorization">
+<code class="descname">close_authorization</code><span class="sig-paren">(</span><em>auth_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.close_authorization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call to close an authorization after the total amount of
+the authorization has been captured.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.close_order_reference">
+<code class="descname">close_order_reference</code><span class="sig-paren">(</span><em>order_ref</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.close_order_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.confirm_order_reference">
+<code class="descname">confirm_order_reference</code><span class="sig-paren">(</span><em>order_ref</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.confirm_order_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.get_authorization_status">
+<code class="descname">get_authorization_status</code><span class="sig-paren">(</span><em>auth_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.get_authorization_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.get_billing_agreement_details">
+<code class="descname">get_billing_agreement_details</code><span class="sig-paren">(</span><em>order_ref</em>, <em>address_consent_token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.get_billing_agreement_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.get_capture_details">
+<code class="descname">get_capture_details</code><span class="sig-paren">(</span><em>capture_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.get_capture_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.get_order_reference_details">
+<code class="descname">get_order_reference_details</code><span class="sig-paren">(</span><em>order_ref</em>, <em>address_consent_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.get_order_reference_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.get_refund_details">
+<code class="descname">get_refund_details</code><span class="sig-paren">(</span><em>refund_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.get_refund_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call to query the status of a particular refund.
+If you received a Pending status when you called the Refund operation,
+you can call this operation to get the current status.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.refund">
+<code class="descname">refund</code><span class="sig-paren">(</span><em>capture_id</em>, <em>amount</em>, <em>refund_id</em>, <em>notes=''</em>, <em>currency='USD'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.refund" title="Permalink to this definition">¶</a></dt>
+<dd><p>Refunds a captured payment
+:param capture_id: the id of the captured payment
+:param amount: the amount to refund
+:param refund_id: a made up refund id for your reference
+:param notes:
+:param currency:
+:return: the direct return value from amazon</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.offamazonpayments.OffAmazonPayments.set_order_reference_details">
+<code class="descname">set_order_reference_details</code><span class="sig-paren">(</span><em>order_ref</em>, <em>order_total</em>, <em>store_name</em>, <em>order_id=None</em>, <em>note=None</em>, <em>currency='USD'</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.offamazonpayments.OffAmazonPayments.set_order_reference_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mws.utils">
+<span id="mws-utils-module"></span><h2>mws.utils module<a class="headerlink" href="#module-mws.utils" title="Permalink to this headline">¶</a></h2>
+<p>Created on Tue Jun 26 15:42:07 2012</p>
+<p>Borrowed from <a class="reference external" href="https://github.com/timotheus/ebaysdk-python">https://github.com/timotheus/ebaysdk-python</a></p>
+<p>&#64;author: pierre</p>
+<dl class="class">
+<dt id="mws.utils.object_dict">
+<em class="property">class </em><code class="descclassname">mws.utils.</code><code class="descname">object_dict</code><span class="sig-paren">(</span><em>initd=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.utils.object_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict</span></code></p>
+<p>object view of dict, you can
+&gt;&gt;&gt; a = object_dict()
+&gt;&gt;&gt; a.fish = &#8216;fish&#8217;
+&gt;&gt;&gt; a[&#8216;fish&#8217;]
+&#8216;fish&#8217;
+&gt;&gt;&gt; a[&#8216;water&#8217;] = &#8216;water&#8217;
+&gt;&gt;&gt; a.water
+&#8216;water&#8217;
+&gt;&gt;&gt; a.test = {&#8216;value&#8217;: 1}
+&gt;&gt;&gt; a.test2 = object_dict({&#8216;name&#8217;: &#8216;test2&#8217;, &#8216;value&#8217;: 2})
+&gt;&gt;&gt; a.test, a.test2.name, a.test2.value
+(1, &#8216;test2&#8217;, 2)</p>
+<dl class="method">
+<dt id="mws.utils.object_dict.getvalue">
+<code class="descname">getvalue</code><span class="sig-paren">(</span><em>item</em>, <em>value=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.utils.object_dict.getvalue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mws.utils.xml2dict">
+<em class="property">class </em><code class="descclassname">mws.utils.</code><code class="descname">xml2dict</code><a class="headerlink" href="#mws.utils.xml2dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mws.utils.xml2dict.fromstring">
+<code class="descname">fromstring</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.utils.xml2dict.fromstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>parse a string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.utils.xml2dict.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.utils.xml2dict.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>parse a xml file to a dict</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mws">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mws" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">mws package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-mws.mws">mws.mws module</a></li>
+<li><a class="reference internal" href="#module-mws.offamazonpayments">mws.offamazonpayments module</a></li>
+<li><a class="reference internal" href="#module-mws.utils">mws.utils module</a></li>
+<li><a class="reference internal" href="#module-mws">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">mws</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/mws.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="mws"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >mws</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Paulo Alvarado.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reports &#8212; Python Amazon MWS 0.8 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Python Amazon MWS 0.8 documentation" href="index.html" />
+    <link rel="next" title="Fulfillment Inbound Shipment" href="fulfillmentInboundShipment.html" />
+    <link rel="prev" title="Feeds" href="feeds.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fulfillmentInboundShipment.html" title="Fulfillment Inbound Shipment"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="feeds.html" title="Feeds"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reports">
+<h1>Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h1>
+<p>Here is a very simple example of how to retrieve a report from Amazon
+(assuming you already have a report ID from a different request, or from seller central)
+using the python-amazon-mws wrapper.</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mws</span> <span class="kn">import</span> <span class="n">mws</span>
+
+<span class="n">access_key</span> <span class="o">=</span> <span class="s1">&#39;accesskey&#39;</span> <span class="c1">#replace with your access key</span>
+<span class="n">merchant_id</span> <span class="o">=</span> <span class="s1">&#39;merchantid&#39;</span> <span class="c1">#replace with your merchant id</span>
+<span class="n">secret_key</span> <span class="o">=</span> <span class="s1">&#39;secretkey&#39;</span> <span class="c1">#replace with your secret key</span>
+
+<span class="n">reportid</span> <span class="o">=</span> <span class="s1">&#39;123456&#39;</span> <span class="c1">#replace with report id</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">mws</span><span class="o">.</span><span class="n">Reports</span><span class="p">(</span><span class="n">access_key</span><span class="o">=</span><span class="n">access_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="o">=</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">account_id</span><span class="o">=</span><span class="n">merchant_id</span><span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">get_report</span><span class="p">(</span><span class="n">report_id</span><span class="o">=</span><span class="n">reportid</span><span class="p">)</span>
+<span class="n">response_data</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">original</span>
+<span class="k">print</span> <span class="n">response_data</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="mws.Reports">
+<em class="property">class </em><code class="descclassname">mws.</code><code class="descname">Reports</code><span class="sig-paren">(</span><em>access_key</em>, <em>secret_key</em>, <em>account_id</em>, <em>region='US'</em>, <em>domain=''</em>, <em>uri=''</em>, <em>version=''</em>, <em>auth_token=''</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports" title="Permalink to this definition">¶</a></dt>
+<dd><p>#Amazon MWS Reports API#</p>
+<dl class="method">
+<dt id="mws.Reports.get_report">
+<code class="descname">get_report</code><span class="sig-paren">(</span><em>report_id</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the contents of a report and the Content-MD5 header for the returned report body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>report_id</strong> (<em>str</em>) &#8211; A unique identifier of the report to download, obtained from the GetReportList operation or
+the GeneratedReportId of a ReportRequest.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
+flat file, or an XML document.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_count">
+<code class="descname">get_report_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>acknowledged=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+available for download.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>report_types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+false to list order reports that have not been acknowledged. This filter is valid only with order
+reports; it does not work with listing reports.</li>
+<li><strong>from_date</strong> &#8211; The earliest date you are looking for, in ISO 8601 date time format.</li>
+<li><strong>to_date</strong> &#8211; The most recent date you are looking for, in ISO 8601 date time format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
+available for download.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_list">
+<code class="descname">get_report_list</code><span class="sig-paren">(</span><em>request_ids=()</em>, <em>max_count=None</em>, <em>types=()</em>, <em>acknowledged=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of reports that were created in the previous 90 days.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request_ids</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
+conditions are ignored.</li>
+<li><strong>max_count</strong> (<em>int</em>) &#8211; A non-negative integer that represents the maximum number of report requests to return. If you
+specify a number greater than 100, the request is rejected.</li>
+<li><strong>types</strong> (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>) &#8211; A structured list of ReportType enumeration values.</li>
+<li><strong>acknowledged</strong> (<em>bool</em>) &#8211; A Boolean value that indicates if an order report has been acknowledged by a prior call to
+UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
+false to list order reports that have not been acknowledged. This filter is valid only with order
+reports; it does not work with listing reports.</li>
+<li><strong>from_date</strong> &#8211; The earliest date you are looking for, in ISO 8601 date time format.</li>
+<li><strong>to_date</strong> &#8211; The most recent date you are looking for, in ISO 8601 date time format.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a list of reports that were created in the previous 90 days</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_list_by_next_token">
+<code class="descname">get_report_list_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_list_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> (<em>str</em>) &#8211; A string token returned in a previous call. Use the NextToken to call the operation again if
+the return value of HasNext is true.</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_request_count">
+<code class="descname">get_report_request_count</code><span class="sig-paren">(</span><em>report_types=()</em>, <em>processing_statuses=()</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_request_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>report_types</strong> &#8211; </li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; </li>
+<li><strong>to_date</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_request_list">
+<code class="descname">get_report_request_list</code><span class="sig-paren">(</span><em>request_ids=()</em>, <em>types=()</em>, <em>processing_statuses=()</em>, <em>max_count=None</em>, <em>from_date=None</em>, <em>to_date=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_request_list" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>request_ids</strong> &#8211; </li>
+<li><strong>types</strong> &#8211; </li>
+<li><strong>processing_statuses</strong> &#8211; </li>
+<li><strong>max_count</strong> &#8211; </li>
+<li><strong>from_date</strong> &#8211; </li>
+<li><strong>to_date</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_request_list_by_next_token">
+<code class="descname">get_report_request_list_by_next_token</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_request_list_by_next_token" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_schedule_count">
+<code class="descname">get_report_schedule_count</code><span class="sig-paren">(</span><em>types=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_schedule_count" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>types</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.get_report_schedule_list">
+<code class="descname">get_report_schedule_list</code><span class="sig-paren">(</span><em>types=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.get_report_schedule_list" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>types</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mws.Reports.request_report">
+<code class="descname">request_report</code><span class="sig-paren">(</span><em>report_type</em>, <em>start_date=None</em>, <em>end_date=None</em>, <em>marketplace_ids=()</em><span class="sig-paren">)</span><a class="headerlink" href="#mws.Reports.request_report" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>report_type</strong> &#8211; </li>
+<li><strong>start_date</strong> &#8211; </li>
+<li><strong>end_date</strong> &#8211; </li>
+<li><strong>marketplace_ids</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="feeds.html"
+                        title="previous chapter">Feeds</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="fulfillmentInboundShipment.html"
+                        title="next chapter">Fulfillment Inbound Shipment</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/reports.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fulfillmentInboundShipment.html" title="Fulfillment Inbound Shipment"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="feeds.html" title="Feeds"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Python Amazon MWS 0.8 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2012, Paulo Alvarado.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>

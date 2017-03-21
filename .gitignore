@@ -4,7 +4,6 @@
 *.egg
 *.egg-info
 dist
-build
 eggs
 parts
 bin
@@ -26,3 +25,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+venv/
