@@ -21,5 +21,5 @@ using the python-amazon-mws wrapper.
     response_data = report.original
     print response_data
 
-.. autoclass:: mws.Reports
+.. autoclass:: pymazon.Reports
    :members:

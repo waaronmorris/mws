@@ -1,5 +1,7 @@
 # mws
-This is a fork and continuation of https://github.com/czpython/python-amazon-mws with preliminary Python 2/3 support.
+This is a fork and continuation of https://github.com/jameshiew/mws.
+
+Documentation is located at
 
 Install from PyPI with `pip install pymazon`.
 

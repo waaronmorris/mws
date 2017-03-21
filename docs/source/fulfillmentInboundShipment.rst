@@ -2,6 +2,6 @@
 Fulfillment Inbound Shipment
 ############################
 
-.. autoclass:: mws.InboundShipments
+.. autoclass:: pymazon.InboundShipments
    :members:
 

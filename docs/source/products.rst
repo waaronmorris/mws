@@ -2,5 +2,5 @@
 Products
 ############
 
-.. autoclass:: mws.Products
+.. autoclass:: pymazon.Products
    :members:
