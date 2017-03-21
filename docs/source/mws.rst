@@ -4,26 +4,26 @@ mws package
 Submodules
 ----------
 
-pymazon.mws module
+pymazonian.mws module
 --------------
 
-.. automodule:: pymazon.mws
+.. automodule:: pymazonian.mws
     :members:
     :undoc-members:
     :show-inheritance:
 
-pymazon.offamazonpayments module
+pymazonian.offamazonpayments module
 ----------------------------
 
-.. automodule:: pymazon.offamazonpayments
+.. automodule:: pymazonian.offamazonpayments
     :members:
     :undoc-members:
     :show-inheritance:
 
-pymazon.utils module
+pymazonian.utils module
 ----------------
 
-.. automodule:: pymazon.utils
+.. automodule:: pymazonian.utils
     :members:
     :undoc-members:
     :show-inheritance:
@@ -32,7 +32,7 @@ pymazon.utils module
 Module contents
 ---------------
 
-.. automodule:: pymazon
+.. automodule:: pymazonian
     :members:
     :undoc-members:
     :show-inheritance:

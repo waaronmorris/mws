@@ -2,5 +2,5 @@
 Fulfillment Inventory
 ############################
 
-.. autoclass:: pymazon.Inventory
+.. autoclass:: pymazonian.Inventory
     :members:

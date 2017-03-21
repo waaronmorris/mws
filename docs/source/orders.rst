@@ -2,5 +2,5 @@
 Orders
 ######
 
-.. autoclass:: pymazon.Orders
+.. autoclass:: pymazonian.Orders
    :members:

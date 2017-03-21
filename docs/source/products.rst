@@ -2,5 +2,5 @@
 Products
 ############
 
-.. autoclass:: pymazon.Products
+.. autoclass:: pymazonian.Products
    :members:

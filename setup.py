@@ -10,14 +10,14 @@ else:
 from setuptools import setup
 
 setup(
-    name='pymazon',
+    name='pymazonian',
     version='0.8',
     maintainer="W. Aaron Morris",
     maintainer_email="waaronmorris@gmail.com",
-    url="https://github.com/waaronmorris/pymazon",
+    url="https://github.com/waaronmorris/pymazonian",
     description=short_description,
     long_description=long_description,
-    packages=['pymazon'],
+    packages=['pymazonian'],
     install_requires=[
         'requests'
     ],
