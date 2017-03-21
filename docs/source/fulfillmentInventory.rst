@@ -2,5 +2,5 @@
 Fulfillment Inventory
 ############################
 
-.. autoclass:: mws.Inventory
+.. autoclass:: pymazon.Inventory
     :members:

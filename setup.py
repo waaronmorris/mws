@@ -14,7 +14,7 @@ setup(
     version='0.8',
     maintainer="W. Aaron Morris",
     maintainer_email="waaronmorris@gmail.com",
-    url="https://github.com/waaronmorris/mws",
+    url="https://github.com/waaronmorris/pymazon",
     description=short_description,
     long_description=long_description,
     packages=['pymazon'],

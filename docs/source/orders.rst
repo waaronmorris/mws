@@ -2,5 +2,5 @@
 Orders
 ######
 
-.. autoclass:: mws.Orders
+.. autoclass:: pymazon.Orders
    :members:

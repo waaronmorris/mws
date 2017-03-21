@@ -2,5 +2,5 @@
 Sellers
 #######
 
-.. autoclass:: mws.Sellers
+.. autoclass:: pymazon.Sellers
    :members:
