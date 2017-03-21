@@ -10,14 +10,14 @@ else:
 from setuptools import setup
 
 setup(
-    name='mws',
-    version='0.7',
-    maintainer="James Hiew",
-    maintainer_email="james@hiew.net",
-    url="http://github.com/jameshiew/mws",
+    name='pymazon',
+    version='0.8',
+    maintainer="W. Aaron Morris",
+    maintainer_email="waaronmorris@gmail.com",
+    url="https://github.com/waaronmorris/mws",
     description=short_description,
     long_description=long_description,
-    packages=['mws'],
+    packages=['pymazon'],
     install_requires=[
         'requests'
     ],
