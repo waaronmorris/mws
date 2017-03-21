@@ -3,7 +3,7 @@ short_description = 'Python library for interacting with the Amazon MWS API'
 try:
     from pypandoc import convert
 except (ImportError, OSError):  # either pypandoc or pandoc isn't installed
-    long_description = "See README.md"
+    long_description = "http://pymazonian.readthedocs.io/en/latest/"
 else:
     long_description = convert("README.md", 'rst')
 
