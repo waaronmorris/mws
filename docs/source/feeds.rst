@@ -2,6 +2,6 @@
 Feeds
 #####
 
-.. autoclass:: pymazon.Feeds
+.. autoclass:: pymazonian.Feeds
    :members:
 
