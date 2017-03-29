@@ -1,6 +1,0 @@
-######
-Orders
-######
-
-.. autoclass:: mws.Orders
-   :members:

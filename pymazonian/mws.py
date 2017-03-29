@@ -34,6 +34,17 @@ __all__ = [
     'InboundShipments'
 ]
 
+ShipmentStatus = ['WORKING',
+                  'SHIPPED',
+                  'IN_TRANSIT',
+                  'DELIVERED',
+                  'CHECKED_IN',
+                  'RECEIVING',
+                  'CLOSED',
+                  'CANCELLED',
+                  'DELETED',
+                  'ERROR']
+
 """
 See https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/doc/en_US/bde/MWSDeveloperGuide._V357736853_.pdf page 8
 for a list of the end points and marketplace IDs
@@ -77,9 +88,12 @@ class MWSError(Exception):
 def calc_md5(string):
     """
     Calculates the MD5 encryption for the given string
+    
+    Args:
+        string: 
 
-    :param string:
-    :return:
+    Returns:
+
     """
     md = hashlib.md5()
     md.update(string)
@@ -89,9 +103,12 @@ def calc_md5(string):
 def remove_empty(d):
     """
     Helper function that removes all keys from a dictionary (d), that have an empty value.
+    
+    Args:
+        d (`dict`): 
 
-    :param d: dict
-    :return: dict
+    Returns:
+
     """
     for key in set(d.keys()):
         if not d[key]:
@@ -102,9 +119,12 @@ def remove_empty(d):
 def remove_namespace(xml):
     """
     Removes the Namespace from XML response
+    
+    Args:
+        xml: 
 
-    :param xml:
-    :return:
+    Returns:
+
     """
     regex = re.compile(' xmlns(:ns2)?="[^"]+"|(ns2:)|(xml:)')
     return regex.sub('', xml)
@@ -113,10 +133,12 @@ def remove_namespace(xml):
 class DictWrapper(object):
     def __init__(self, xml, rootkey=None):
         """
-
-        :param xml:
-        :param rootkey:
+        
+        Args:
+            xml: 
+            rootkey: 
         """
+
         self.original = xml
         self._rootkey = rootkey
         self._mydict = utils.xml2dict().fromstring(remove_namespace(xml))
@@ -127,7 +149,7 @@ class DictWrapper(object):
     def parsed(self):
         """
 
-        :return:
+        :return: 
         """
         if self._rootkey:
             return self._response_dict.get(self._rootkey)
@@ -139,12 +161,13 @@ class DataWrapper(object):
     """
         Text wrapper in charge of validating the hash sent by Amazon.
     """
+
     def __init__(self, data, header):
         """
-
+        
         Args:
-            data:
-            header:
+            data: 
+            header: 
         """
         self.original = data
         if 'content-md5' in header:
@@ -155,7 +178,7 @@ class DataWrapper(object):
     @property
     def parsed(self):
         """
-
+        
         Returns:
 
         """
@@ -231,10 +254,14 @@ class MWS(object):
         3. Submit Request
         4. Process Response
 
-        :param extra_data:
-        :param method:
-        :param kwargs:
-        :return:
+        
+        Args:
+            extra_data: 
+            method: 
+            **kwargs: 
+
+        Returns:
+
         """
 
         # Remove all keys with an empty value
@@ -291,19 +318,23 @@ class MWS(object):
         """
         Returns a GREEN, GREEN_I, YELLOW or RED status.
         Depending on the status/availability of the API its being called from.
+        
+        Returns:
+            Status of API service
 
-        :return: Status of API service
         """
 
         return self.make_request(extra_data=dict(Action='GetServiceStatus'))
 
     def calc_signature(self, method, request_description):
         """
-        Calculate MWS signature to interface with Amazon
+        
+        Args:
+            method (`str`): 
+            request_description (`str`): 
 
-        :param method: (str)
-        :param request_description: (str)
-        :return: Signature String
+        Returns (`str`): Signature String
+
         """
 
         sig_data = '\n'.join([
@@ -318,19 +349,22 @@ class MWS(object):
     def get_timestamp():
         """
         Returns the current timestamp in proper format.
+        
+        Returns:
 
-        :return:
         """
         return strftime("%Y-%m-%dT%H:%M:%SZ", gmtime())
 
     def enumerate_dict(self, param,  dic):
         """
-        Builds a dictionary of an enumerated parameter.
-        Takes any iterable and returns a dictionary recursively
+        Builds a dictionary of an enumerated parameter. Takes any dictionary and returns a dictionary recursively
+        
+        Args:
+            param (): 
+            dic (`dict`): 
 
-        :param param:
-        :param dic:
-        :return:
+        Returns:
+
         """
 
         params = {}
@@ -350,8 +384,8 @@ class MWS(object):
 
     def enumerate_list(self, param, values):
         """
-        Builds a dictionary of an enumerated parameter.
-        Takes any iterable and returns a dictionary.
+        Builds a dictionary of an enumerated parameter. Takes any iterable and returns a dictionary.
+        
         ie. enumerate_list('MarketplaceIdList.Id', (123, 345, 4343))
             returns
             {
@@ -359,12 +393,15 @@ class MWS(object):
                 MarketplaceIdList.Id.2: 345,
                 MarketplaceIdList.Id.3: 4343
             }
+        
+        Args:
+            param (`str`): the beginning of the key in the returned dictionary
+            values(`list`): the values in the returned dictionary
 
-        :param param:
-        :param values:
-        :return:
+        Returns:
+            :obj:`DictWrapper`
+
         """
-
         params = {}
         if values is not None:
             if not param.endswith('.'):
@@ -410,8 +447,7 @@ class Feeds(MWS):
                 within a 24-hour period.
 
         Returns:
-            A dict mapping keys to the corresponding table row data fetched. Each row is represented as a tuple of
-            strings.
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='SubmitFeed',
@@ -440,7 +476,7 @@ class Feeds(MWS):
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
 
         Returns:
-            Returns a list of all feed submissions submitted in the previous 90 days.
+            :obj:`DictWrapper`
         """
 
         data = dict(Action='GetFeedSubmissionList',
@@ -460,8 +496,7 @@ class Feeds(MWS):
                 ListByNextToken where the value of HasNext was true.
 
         Returns:
-            Amazon MWS returns an XML file that contains the response to a successful request or subscription.
-            If the request is unsuccessful, the main response element is ErrorResponse.
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetFeedSubmissionListByNextToken', NextToken=token)
@@ -479,7 +514,7 @@ class Feeds(MWS):
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
 
         Returns:
-            Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+            :obj:`DictWrapper`
         """
         data = dict(Action='GetFeedSubmissionCount',
                     SubmittedFromDate=from_date,
@@ -500,7 +535,7 @@ class Feeds(MWS):
             to_date: The latest submission date that you are looking for, in ISO8601 date format.
 
         Returns:
-            Amazon MWS returns an XML file that contains the response to a successful request or subscription.
+            :obj:`DictWrapper`
         """
         data = dict(Action='CancelFeedSubmissions',
                     SubmittedFromDate=from_date,
@@ -518,8 +553,7 @@ class Feeds(MWS):
                 the FeedSubmissionId for a feed using the GetFeedSubmissionList operation.
 
         Returns:
-            The GetFeedSubmissionResult operation returns the feed processing report and the Content-MD5 header for the
-            returned HTTP body.
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetFeedSubmissionResult', FeedSubmissionId=feed_id)
@@ -540,8 +574,7 @@ class Reports(MWS):
                 the GeneratedReportId of a ReportRequest.
 
         Returns:
-            The contents of the report document. Depending on the ReportType, this will either be a tab-delimited
-            flat file, or an XML document.
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReport', ReportId=report_id)
@@ -554,7 +587,7 @@ class Reports(MWS):
 
         Args:
             report_types (:obj:`list` of :obj:`str`): A structured list of ReportType enumeration values.
-            acknowledged (bool): A Boolean value that indicates if an order report has been acknowledged by a prior call to
+            acknowledged (`bool`): A Boolean value that indicates if an order report has been acknowledged by a prior call to
                 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
                 false to list order reports that have not been acknowledged. This filter is valid only with order
                 reports; it does not work with listing reports.
@@ -562,8 +595,7 @@ class Reports(MWS):
             to_date: The most recent date you are looking for, in ISO 8601 date time format.
 
         Returns:
-            a count of the reports, created in the previous 90 days, with a status of _DONE_ and that are
-            available for download.
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportCount',
@@ -581,10 +613,10 @@ class Reports(MWS):
         Args:
             request_ids (:obj:`list` of :obj:`str`): A structured list of ReportRequestId values. If you pass in ReportRequestId values, other query
                 conditions are ignored.
-            max_count (int): A non-negative integer that represents the maximum number of report requests to return. If you
+            max_count (`int`): A non-negative integer that represents the maximum number of report requests to return. If you
                 specify a number greater than 100, the request is rejected.
             types (:obj:`list` of :obj:`str`): A structured list of ReportType enumeration values.
-            acknowledged (bool): A Boolean value that indicates if an order report has been acknowledged by a prior call to
+            acknowledged (`bool`): A Boolean value that indicates if an order report has been acknowledged by a prior call to
                 UpdateReportAcknowledgements. Set to true to list order reports that have been acknowledged; set to
                 false to list order reports that have not been acknowledged. This filter is valid only with order
                 reports; it does not work with listing reports.
@@ -592,7 +624,7 @@ class Reports(MWS):
             to_date: The most recent date you are looking for, in ISO 8601 date time format.
 
         Returns:
-            a list of reports that were created in the previous 90 days
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportList',
@@ -612,6 +644,7 @@ class Reports(MWS):
                 the return value of HasNext is true.
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportListByNextToken', NextToken=token)
@@ -627,6 +660,7 @@ class Reports(MWS):
             to_date:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportRequestCount',
@@ -649,6 +683,7 @@ class Reports(MWS):
             to_date:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportRequestList',
@@ -667,6 +702,7 @@ class Reports(MWS):
             token:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportRequestListByNextToken', NextToken=token)
@@ -682,6 +718,7 @@ class Reports(MWS):
             marketplace_ids:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='RequestReport',
@@ -702,6 +739,7 @@ class Reports(MWS):
             types:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportScheduleList')
@@ -715,6 +753,7 @@ class Reports(MWS):
             types:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetReportScheduleCount')
@@ -750,6 +789,7 @@ class Orders(MWS):
             max_results:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
 
@@ -775,6 +815,7 @@ class Orders(MWS):
             token:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListOrdersByNextToken', NextToken=token)
@@ -787,6 +828,7 @@ class Orders(MWS):
             amazon_order_ids:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetOrder')
@@ -800,6 +842,7 @@ class Orders(MWS):
             amazon_order_id:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListOrderItems', AmazonOrderId=amazon_order_id)
@@ -812,6 +855,7 @@ class Orders(MWS):
             token:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListOrderItemsByNextToken', NextToken=token)
@@ -838,6 +882,7 @@ class Products(MWS):
             contextid:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListMatchingProducts',
@@ -856,6 +901,7 @@ class Products(MWS):
             asins:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetMatchingProduct', MarketplaceId=marketplaceid)
@@ -875,6 +921,7 @@ class Products(MWS):
             ids:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetMatchingProductForId',
@@ -893,6 +940,7 @@ class Products(MWS):
             skus:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetCompetitivePricingForSKU', MarketplaceId=marketplace_id)
@@ -909,6 +957,7 @@ class Products(MWS):
             asins:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetCompetitivePricingForASIN', MarketplaceId=marketplaceid)
@@ -925,6 +974,7 @@ class Products(MWS):
             excludeme:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetLowestOfferListingsForSKU',
@@ -944,6 +994,7 @@ class Products(MWS):
             excludeme:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetLowestOfferListingsForASIN',
@@ -963,6 +1014,7 @@ class Products(MWS):
             excludeme:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetLowestPricedOffersForSKU',
@@ -982,6 +1034,7 @@ class Products(MWS):
             excludeme:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetLowestPricedOffersForASIN',
@@ -999,6 +1052,7 @@ class Products(MWS):
             sku:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetProductCategoriesForSKU',
@@ -1014,6 +1068,7 @@ class Products(MWS):
             asin:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetProductCategoriesForASIN',
@@ -1030,6 +1085,7 @@ class Products(MWS):
             condition:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetMyPriceForSKU',
@@ -1047,6 +1103,7 @@ class Products(MWS):
             condition:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetMyPriceForASIN',
@@ -1070,6 +1127,7 @@ class Sellers(MWS):
         The operation returns only those marketplaces where the seller's account is in an active state.
 
         Returns:
+            :obj:`DictWrapper`
 
         """
 
@@ -1085,6 +1143,7 @@ class Sellers(MWS):
             token:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListMarketplaceParticipations', NextToken=token)
@@ -1100,6 +1159,47 @@ class InboundShipments(MWS):
     URI = "/FulfillmentInboundShipment/2010-10-01"
     VERSION = '2010-10-01'
 
+    def list_inbound_shipments(self, shipment_status_list=None, shipment_id_list=None,
+                               last_updated_after=None, last_updated_before=None):
+        """
+        
+        Args:
+            shipment_status_list (:obj:`list` of :obj:`ShipmentStatus`): 
+            shipment_id_list (:obj:`list` of :obj:`ShipmentStatus`):
+            last_updated_after: A date used for selecting inbound shipments that were last updated after (or at) a 
+                specified time. The selection includes updates made by Amazon and by the seller.
+            last_updated_before:  A date used for selecting inbound shipments that were last updated before (or at) a 
+                specified time. The selection includes updates made by Amazon and by the seller.
+
+        Returns:
+            :obj:`DictWrapper`
+
+        """
+
+        data = dict(Action='ListInboundShipments',
+                    LastUpdatedAfter=last_updated_after,
+                    LastUpdatedBefore=last_updated_before)
+        data.update(self.enumerate_list('ShipmentStatusList.member.', shipment_status_list))
+        data.update(self.enumerate_list('ShipmentIdList.member.', shipment_id_list))
+        return self.make_request(data)
+
+    def list_inbound_shipments_by_next_token(self, token):
+        """
+        Takes a "NextToken" and returns the same information as :func "list_inbound_shipments".
+        Based on the "NextToken".
+
+        Args:
+            token: A string token returned in the response of your previous request to either ListInboundShipments
+                or ListInboundShipmentsByNextToken.
+
+        Returns:
+            :obj:`DictWrapper`
+
+        """
+        data = dict(Action='ListInboundShipmentsByNextToken',
+                    NextToken=token)
+        return self.make_request(data)
+
     def list_inbound_shipment_items(self, shipment_id=None, last_updated_after=None, last_updated_before=None):
         """
         Returns a list of items contained in an inbound shipment that you specify with a ShipmentId.
@@ -1114,7 +1214,7 @@ class InboundShipments(MWS):
             last_updated_before:
 
         Returns:
-            a list of items contained in an inbound shipment
+            :obj:`DictWrapper`
 
         """
 
@@ -1134,7 +1234,7 @@ class InboundShipments(MWS):
                 or ListInboundShipmentItemsByNextToken.
 
         Returns:
-            a list of items contained in an inbound shipment
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListInboundShipmentItemsByNextToken',
@@ -1152,7 +1252,7 @@ class InboundShipments(MWS):
             marketplace_id:
 
         Returns:
-            Dictionary of inbound guidance and reason
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetInboundGuidanceForSKU',
@@ -1172,7 +1272,7 @@ class InboundShipments(MWS):
             marketplace_id:
 
         Returns:
-            Dictionary of inbound guidance and reason
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='GetInboundGuidanceForASIN',
@@ -1181,11 +1281,8 @@ class InboundShipments(MWS):
         data.update(self.enumerate_list('ASINList.Id.', asin_inbound_guidance_list))
         return self.make_request(data)
 
-    def create_inbound_shipment_plan(self,
-                                     ship_from_address,
-                                     inbound_shipment_plan_request_items,
-                                     ship_to_country_code=None,
-                                     ship_to_country_ship_to_country_subdivision_code=None,
+    def create_inbound_shipment_plan(self, ship_from_address, inbound_shipment_plan_request_items,
+                                     ship_to_country_code=None, ship_to_country_ship_to_country_subdivision_code=None,
                                      label_prep_preference=None):
         """
         The CreateInboundShipmentPlan operation returns one or more inbound shipment plans, which provide the
@@ -1204,6 +1301,7 @@ class InboundShipments(MWS):
             label_prep_preference:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
 
@@ -1220,11 +1318,15 @@ class InboundShipments(MWS):
 
     def create_inbound_shipment(self, shipment_id, inbound_shipment_header, inbound_shipment_items):
         """
+        
+        Args:
+            shipment_id: 
+            inbound_shipment_header: 
+            inbound_shipment_items: 
 
-        :param shipment_id:
-        :param inbound_shipment_header:
-        :param inbound_shipment_items:
-        :return:
+        Returns:
+            :obj:`DictWrapper`
+
         """
         data = dict(Action='CreateInboundShipment',
                     ShipmentId=shipment_id)
@@ -1250,6 +1352,7 @@ class Inventory(MWS):
             response_group:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListInventorySupply',
@@ -1263,9 +1366,10 @@ class Inventory(MWS):
         """
 
         Args:
-            token:
+            token (`str`):
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action='ListInventorySupplyByNextToken', NextToken=token)
@@ -1296,6 +1400,7 @@ class Recommendations(MWS):
             marketplaceid:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
 
@@ -1312,6 +1417,7 @@ class Recommendations(MWS):
             recommendationcategory:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
 
@@ -1328,6 +1434,7 @@ class Recommendations(MWS):
             token:
 
         Returns:
+            :obj:`DictWrapper`
 
         """
         data = dict(Action="ListRecommendationsByNextToken",

@@ -1,7 +1,0 @@
-#####
-Feeds
-#####
-
-.. autoclass:: mws.Feeds
-   :members:
-

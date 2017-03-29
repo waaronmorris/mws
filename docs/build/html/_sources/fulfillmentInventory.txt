@@ -1,6 +1,0 @@
-############################
-Fulfillment Inventory
-############################
-
-.. autoclass:: mws.Inventory
-    :members:

@@ -11,7 +11,7 @@ from setuptools import setup
 
 setup(
     name='pymazonian',
-    version='0.8',
+    version='0.81',
     maintainer="W. Aaron Morris",
     maintainer_email="waaronmorris@gmail.com",
     url="https://github.com/waaronmorris/pymazonian",
