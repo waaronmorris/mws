@@ -1,7 +1,0 @@
-############################
-Fulfillment Inbound Shipment
-############################
-
-.. autoclass:: mws.InboundShipments
-   :members:
-

@@ -1,6 +1,0 @@
-#######
-Sellers
-#######
-
-.. autoclass:: mws.Sellers
-   :members:
